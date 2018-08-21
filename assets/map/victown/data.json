@@ -1,0 +1,673 @@
+{
+    "mapName" : "victown",
+    "tutorial" : [],
+    "mob" : [],
+    "npc" : [
+        {
+            "name" : "business_man",
+            "name_cht" : "商人",
+            "spawnPosition" : {
+                "x":2165,
+                "y":1268
+            },
+            "bodySize" : {
+                "x" : 61,
+                "y" : 55
+            },
+            "animation" : {
+                "frames" : [0],
+                "speed" : 5,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "item",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "itemName" : "red_potion",
+                    "amount" : 10,
+                    "money" : 1000,
+                    "text" : [
+                        {
+                            "page" : "謝謝惠顧！（從道具欄點擊即可使用！）"
+                        },
+                        {
+                            "page" : "金額不足……"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "item",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "itemName" : "red_potion",
+                    "amount" : 20,
+                    "money" : 2000,
+                    "text" : [
+                        {
+                            "page" : "謝謝惠顧！（從道具欄點擊即可使用！）"
+                        },
+                        {
+                            "page" : "金額不足……"
+                        }
+                    ]
+                }
+            ],
+            "murmur" : [
+                {
+                    "text" : "蛤？你說你剛剛有看到我？你看錯了吧……" 
+                },
+                {
+                    "text" : "想要買軟實成績嗎？"
+                },
+                {
+                    "text" : "好想吃剛剛的紅蘿蔔啊"
+                }
+            ]
+        },
+        {
+            "name" : "seawoman",
+            "name_cht" : "珮莉斯",
+            "spawnPosition" : {
+                "x" : 1190,
+                "y" : 1365
+            },
+            "bodySize" : {
+                "x" : 45,
+                "y" : 75
+            },
+            "animation" :{
+                "frames" : [0],
+                "speed" : 5,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "mission",
+                    "missionNum" : {
+                        "lowerbound" : 6.8,
+                        "upperbound" : 7.5
+                    },
+                    "title" : "珮莉斯的請求",
+                    "text" : [
+                        {
+                            "page" : "最近似乎有海洋生物在海岸邊肆虐，許多漁夫都不堪其擾。"
+                        },
+                        {
+                            "page" : "旅人阿，幫幫漁夫吧。"
+                        }
+                    ],
+                    "missionContent" : {
+                        "title" : "珮莉斯的請求",
+                        "description" : "可惡的海獸啊啊啊！",
+                        "type" : "hunt",
+                        "target" : "shrimp",
+                        "targetDisplayName" : "活跳蝦",
+                        "goalAmount" : 30,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 1800
+                            }
+                        ]
+                    }
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 7,
+                        "upperbound" : 7.8
+                    },
+                    "title" : "珮莉斯的請求",
+                    "text" : [
+                        {
+                            "page" : "有能力的旅人阿、為什麼你還不去幫助需要的人們呢？"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "done",
+                    "missionNum" : {
+                        "lowerbound" : 7.5,
+                        "upperbound" : 8
+                    },
+                    "title" : "珮莉斯的請求（已完成）",
+                    "text" : [
+                        {
+                            "page" : "謝謝你了，旅人。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 7.8,
+                        "upperbound" : 8.5
+                    },
+                    "title" : "請幫幫我",
+                    "text" : [
+                        {
+                            "page" : "迷失自我的旅人阿，你想要的是什麼呢？"
+                        },
+                        {
+                            "page" : "你想回家呢、還是想離開這個地方、還是你想留下來呢？"
+                        },
+                        {
+                            "page" : "唉，我不能回答意志不堅的人，請再去幫助居民，堅定自己的心智再來找我吧。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20 
+                    },
+                    "title" : "你為什麼什麼都知道？",
+                    "text" : [
+                        {
+                            "page" : "都是旨意、我和你沒什麼不一樣。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "title" : "認識妙斯嗎？",
+                    "text" : [
+                        {
+                            "page" : "知道、但不認識。"
+                        }
+                    ]
+                },
+                {   
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 9,
+                        "upperbound" : 9.8
+                    },
+                    "title" : "賄賂珮莉斯",
+                    "text" : [
+                        {
+                            "page" : "意志不堅的旅人阿……"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "done",
+                    "missionNum" : {
+                        "lowerbound" : 9.5,
+                        "upperbound" : 10
+                    },
+                    "title" : "賄賂珮莉斯（已完成）",
+                    "text" : [
+                        {
+                            "page" : "我不收受賄賂"
+                        },
+                        {
+                            "page" : "(海女雖然這樣說，但仍舊把鱷魚的蛋收下，看得出她心情明顯轉好)"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "mission",
+                    "missionNum" : {
+                        "lowerbound" : 9.8,
+                        "upperbound" : 10.5
+                    },
+                    "title" : "詢問妙斯",
+                    "text" : [
+                        {
+                            "page" : "那麼，你想好了嗎？想要問我什麼？"
+                        },
+                        {
+                            "page" : "那些騙你的人也許就是你以為的救命恩人。"
+                        },
+                        {
+                            "page" : "旅人阿，回去吧，回到你真正的地方，那裏的風在呼喚你。"
+                        },
+                        {
+                            "page" : "去問問她吧，她會告訴你真相的。"
+                        }
+                    ],
+                    "missionContent" : {
+                        "title" : "詢問妙斯",
+                        "description" : "真相到底是什麼？",
+                        "type" : "talkDirect",
+                        "target" : "mom",
+                        "targetDisplayName" : "妙斯",
+                        "goalAmount" : 1,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 2000
+                            }
+                        ]
+                    }
+                }
+                
+            ],
+            "murmur" : [
+                {
+                    "text" : "海在哭泣阿……"
+                },
+                {
+                    "text" : "一切都是上天最好的安排。"
+                },
+                {
+                    "text" : "這裡的風景我都會幫你記得。"
+                }
+            ]
+        },
+        {
+        "name" : "little_girl",
+        "name_cht" : "米琪",
+        "spawnPosition" : {
+            "x" : 766,
+            "y" : 548
+        },
+        "bodySize" : {
+            "x" : 38,
+            "y" : 52
+        },
+        "animation" :{
+            "frames" : [0,1,2,3,4,5,6,7],
+            "speed" : 5,
+            "startFrame" : 0
+        },
+        "type" : "mission",
+        "content" : [
+            {
+                "tag" : "mission",
+                "missionNum" : {
+                    "lowerbound" : 7.8,
+                    "upperbound" : 8.5
+                },
+                "title" : "幫米琪報仇",
+                "text" : [
+                    {
+                        "page" : "嗚嗚嗚……"
+                    },
+                    {
+                        "page" : "我被烏賊欺負了嗚嗚…哥哥你可以幫我把烏賊都趕走嗎?這樣下次我去海邊玩就不會再被烏賊噴得黑漆漆了！"
+                    }
+                ],
+                "missionContent" : {
+                    "title" : "幫米琪報仇",
+                    "description" : "啊啊，弄的我一身黑",
+                    "type" : "hunt",
+                    "target" : "squid",
+                    "targetDisplayName" : "烏賊怪",
+                    "goalAmount" : 30,
+                    "completeAmount" : 0,
+                    "reward" : [
+                        {
+                            "type" : "EXP",
+                            "amount" : 2500
+                        }
+                    ]
+                }
+            },
+            {
+                "tag" : "quest",
+                "missionNum" : {
+                    "lowerbound" : 8,
+                    "upperbound" : 8.8
+                },
+                "title" : "幫米琪報仇",
+                "text" : [
+                    {
+                        "page" : "嗚嗚嗚……怎麼還這麼多烏賊……"
+                    }
+                ]
+            },
+            {
+                "tag" : "done",
+                "missionNum" : {
+                    "lowerbound" : 8.5,
+                    "upperbound" : 9
+                },
+                "title" : "幫米琪報仇（已完成）",
+                "text" : [
+                    {
+                        "page"  : "謝謝哥哥，下次我們再一起去海邊玩！"
+                    }
+                ]
+            },
+            {
+                "tag" : "mission",
+                "missionNum" : {
+                    "lowerbound" : 8.8,
+                    "upperbound" : 9.5
+                },
+                "title" : "賄賂珮莉斯",
+                "text" : [
+                    {
+                        "page" : "哥哥，你怎麼看起來心事重重的樣子阿？"
+                    },
+                    {
+                        "page" : "珮莉斯姐姐？她也是一個親切的大姊姊呀！"
+                    },
+                    {
+                        "page" : "是這樣子啊？我記得，姐姐上次跟我說，她很喜歡鯊魚的牙齒，或許你可以拿些去給她？"
+                    }
+                ],
+                "missionContent" : {
+                    "title" : "賄賂珮莉斯",
+                    "description" : "鯊魚的牙齒？好奇怪的品味",
+                    "type" : "collect",
+                    "target" : "shark_teeth",
+                    "targetDisplayName" : "鯊魚的牙齒",
+                    "goalAmount" : 25,
+                    "completeAmount" : 0,
+                    "reward" : [
+                        {
+                            "type" : "EXP",
+                            "amount" : 5000
+                        }
+                    ]
+                }
+            },
+            {
+                "tag" : "quest",
+                "missionNum" : {
+                    "lowerbound" : 5,
+                    "upperbound" : 20
+                },
+                "title" : "你為什麼在這裡？",
+                "text" : [
+                    {
+                        "page" : "哥哥、你在問什麼阿？"
+                    },
+                    {
+                        "page" : "米琪去海邊玩阿(燦笑)"
+                    }
+                ]
+            },
+            {
+                "tag" : "quest",
+                "missionNum" : {
+                    "lowerbound" : -1,
+                    "upperbound" : 20
+                },
+                "title" : "要不要和哥哥一起出去玩？",
+                "text" : [
+                    {
+                        "page" : "哥哥？"
+                    },
+                    {
+                        "page" : "(小女孩被嚇哭了……)"
+                    }
+                ]
+            }
+            
+        ],
+        "murmur" : [
+            {
+                "text" : "希望可以抓到很多很多螃蟹！"
+            },
+            {
+                "text" : "媽媽都不買冰淇淋給我吃，討厭。"
+            },
+            {
+                "text" : "今天可以吃糖果！"
+            }
+        ]
+    }],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/victown/victown.png"
+        },
+        {
+            "name" : "back2",
+            "pos" : "assets/map/victown/back2.png"
+        },
+        {
+            "name" : "back1",
+            "pos" : "assets/map/victown/back1.png"
+        },
+        {
+            "name" : "back0",
+            "pos" : "assets/map/victown/back0.png"
+        },
+        {
+            "name" : "c4",
+            "pos" : "assets/map/victown/cloud/4.png"
+        },
+        {
+            "name" : "c5",
+            "pos" : "assets/map/victown/cloud/5.png"
+        },
+        {
+            "name" : "c8",
+            "pos" : "assets/map/victown/cloud/8.png"
+        },
+        {
+            "name" : "c9",
+            "pos" : "assets/map/victown/cloud/9.png"
+        },
+        {
+            "name" : "c10",
+            "pos" : "assets/map/victown/cloud/10.png"
+        },
+        {
+            "name" : "c11",
+            "pos" : "assets/map/victown/cloud/11.png"
+        },
+        {
+            "name" : "c12",
+            "pos" : "assets/map/victown/cloud/12.png"
+        },
+        {
+            "name" : "c13",
+            "pos" : "assets/map/victown/cloud/13.png"
+        },
+        {
+            "name" : "chatbox",
+            "pos" : "assets/chatbox.png"
+        },
+        {
+            "name" : "exp",
+            "pos" : "assets/exp.png"
+        },
+        {
+            "name" : "red_potion",
+            "pos" : "assets/item/red_potion.png"
+        },
+        {
+            "name" : "namebox",
+            "pos" : "assets/namebox.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "AboveTheTreetops",
+            "pos" : "assets/BGM/AboveTheTreetops.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "victown",
+        "pos" : "assets/map/victown/victown.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "redBottom",
+            "red1",
+            "red2",
+            "monster"
+            
+        ],
+        "connect" : "ladder",
+        "firstgid" : 8
+    },
+    "spritesheet" : [
+        {
+            "name" : "business_man",
+            "pos" : "assets/npc/business_man.png",
+            "width" : 61,
+            "height" : 55
+        },
+        {
+            "name" : "seawoman",
+            "pos" : "assets/npc/seawoman.png",
+            "width" : 45,
+            "height" : 75
+        },
+        {
+            "name" : "little_girl",
+            "pos" : "assets/npc/little_girl.png",
+            "width" : 38,
+            "height" : 52
+        },
+        {
+            "name" : "pointer",
+            "pos" : "assets/pointer.png",
+            "width" : 25,
+            "height" : 32
+        },
+        {
+            "name" : "bt_close",
+            "pos" : "assets/bt_close.png",
+            "width" : 85,
+            "height" : 19
+        },
+        {
+            "name" : "bt_next",
+            "pos" : "assets/bt_next.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_no",
+            "pos" : "assets/bt_no.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_ok",
+            "pos" : "assets/bt_ok.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_prev",
+            "pos" : "assets/bt_prev.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_yes",
+            "pos" : "assets/bt_yes.png",
+            "width" : 57,
+            "height" : 17
+        },
+        {
+            "name" : "bt_reject",
+            "pos" : "assets/bt_reject.png",
+            "width" : 57,
+            "height" : 17
+        }
+    ],
+    "bgm" : "AboveTheTreetops",
+    "worldBounds" : {
+        "x" : 3330,
+        "y" : 1650
+    },
+    "backgroundImage" : [
+        {
+            "name" : "back0",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "back1",
+            "type" : "relative",
+            "offsetY" : 120
+        },
+        {
+            "name" : "c4",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.35
+        },
+        {
+            "name" : "c5",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.33
+        },
+        {
+            "name" : "c8",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.41
+        },
+        {
+            "name" : "c9",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.30
+        },
+        {
+            "name" : "c10",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.31
+        },
+        {
+            "name" : "c11",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.34
+        },
+        {
+            "name" : "c12",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.4
+        },
+        {
+            "name" : "c13",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.41
+        },
+        {
+            "name" : "back2",
+            "type" : "relative",
+            "offsetY" : 120
+        },
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "x" : 0,
+            "y" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "grassymap",
+            "x" : 3230,
+            "y" : 1292
+        },
+        {
+            "destination" : "grassland",
+            "x" : 3150,
+            "y" : 992
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 1393,
+        "y" : 1052
+    }
+}

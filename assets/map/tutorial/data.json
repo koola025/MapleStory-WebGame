@@ -1,0 +1,257 @@
+{
+    "mapName" : "tutorial",
+    "mob" : [],
+    "npc" :[
+        {
+            "name" : "robotman",
+            "name_cht" : "勒塞倫",
+            "spawnPosition" : {
+                "x":653,
+                "y":350
+            },
+            "bodySize" : {
+                "x" : 46,
+                "y" : 83
+            },
+            "animation" : {
+                "frames" : [0, 1, 2,3],
+                "speed" : 8,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 11.8,
+                        "upperbound" : 12.5
+                    },
+                    "title" : "歡迎回家",
+                    "text" : [
+                        {
+                            "page" : "王子！你終於回來了！"
+                        },
+                        {
+                            "page" : "你被陷害之後，國王終於下令掃除這些反對勢力！"
+                        },
+                        {
+                            "page" : "平時能少一事少一事的國王，為了你，嗚嗚太令人感動了！"
+                        },
+                        {
+                            "page" : "請恕我多言了。"
+                        },
+                        {
+                            "page" : "(勒塞倫似乎發現自己失言，尷尬地笑了)"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" :{
+                        "lowerbound" : 11.8,
+                        "upperbound" : 12.5 
+                    },
+                    "title" : "旁邊的傳送門……？",
+                    "text" :[
+                        {
+                            "page" : "王子你發現了啊！"
+                        },
+                        {
+                            "page" : "自從你將那隻怪物消滅後，神奇的事就發生了！"
+                        },
+                        {
+                            "page" : "我們能和異世界交流了，嗚嗚太感人了王子！"
+                        },
+                        {
+                            "page" : "(為什麼感人啊……)"
+                        }
+                    ]
+                }
+            ],
+            "murmur" : [
+                {
+                    "text" : "持續這麼久的內亂終於平息了！" 
+                },
+                {
+                    "text" : "手肘似乎生鏽了阿！"
+                },
+                {
+                    "text" : "他們終於得到應有的教訓了！"
+                }
+            ]
+        }
+    ],
+    "tutorial" : [
+        {
+            "name" : "spot",
+            "pos" : {
+                "x" : 855,
+                "y" : 200
+            },
+            "animate" : true
+        },
+        {
+            "name" : "up",
+            "pos" : {
+                "x" : 520,
+                "y" : 500
+            },
+            "animate" : true
+        },
+        {
+            "name" : "down",
+            "pos" : {
+                "x" : 70,
+                "y" : 300
+            },
+            "animate" : true
+        },
+        {
+            "name" : "right",
+            "pos" : {
+                "x" : 270,
+                "y" : 500
+            },
+            "animate" : true
+        },
+        {
+            "name" : "jump",
+            "pos" : {
+                "x" : 700,
+                "y" : 300
+            },
+            "animate" : true
+        }
+    ],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/tutorial/tutorial.png"
+        },
+        {
+            "name" : "namebox",
+            "pos" : "assets/namebox.png"
+        },
+        {
+            "name" : "chatbox",
+            "pos" : "assets/chatbox.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "tokyo_sky",
+            "pos" : "assets/BGM/tokyo_sky.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "tutorial",
+        "pos" : "assets/map/tutorial/tutorial.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "layer 0",
+            "layer -1",
+            "layer -2",
+            "layer -3",
+            "layer -4"
+        ],
+        "connect" : "layer -5",
+        "firstgid" : 1
+    },
+    "spritesheet" : [
+        {
+            "name" : "spot",
+            "pos" : "assets/map/tutorial/spot.png",
+            "width" : 86,
+            "height" : 84
+        },
+        {
+            "name" : "up",
+            "pos" : "assets/map/tutorial/up.png",
+            "width" : 56,
+            "height" : 55
+        },
+        {
+            "name" : "down",
+            "pos" : "assets/map/tutorial/down.png",
+            "width" : 56,
+            "height" : 55
+        },
+        {
+            "name" : "right",
+            "pos" : "assets/map/tutorial/right.png",
+            "width" : 56,
+            "height" : 55
+        },
+        {
+            "name" : "jump",
+            "pos" : "assets/map/tutorial/jump.png",
+            "width" : 56,
+            "height" : 55
+        },
+        {
+            "name" : "robotman",
+            "pos" : "assets/npc/robotman.png",
+            "width" : 46,
+            "height" : 83
+        },
+        {
+            "name" : "pointer",
+            "pos" : "assets/pointer.png",
+            "width" : 25,
+            "height" : 32
+        },
+        {
+            "name" : "bt_close",
+            "pos" : "assets/bt_close.png",
+            "width" : 85,
+            "height" : 19
+        },
+        {
+            "name" : "bt_next",
+            "pos" : "assets/bt_next.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_no",
+            "pos" : "assets/bt_no.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_ok",
+            "pos" : "assets/bt_ok.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_prev",
+            "pos" : "assets/bt_prev.png",
+            "width" : 46,
+            "height" : 18
+        }
+    ],
+    "bgm" : "tokyo_sky",
+    "worldBounds" : {
+        "x" : 1244,
+        "y" : 700
+    },
+    "backgroundImage" : [
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "offsetY" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "tutorial2",
+            "x" : 900,
+            "y" : 355
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 100,
+        "y" : 408
+    }
+}

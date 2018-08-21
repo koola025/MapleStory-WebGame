@@ -1,0 +1,641 @@
+{
+    "mapName" : "darkwood",
+    "mob" : [
+        
+    ],
+    "tutorial" : [],
+    "npc" :[
+        {
+            "name" : "business_man",
+            "name_cht" : "商人",
+            "spawnPosition" : {
+                "x":2165,
+                "y":1120
+            },
+            "bodySize" : {
+                "x" : 61,
+                "y" : 55
+            },
+            "animation" : {
+                "frames" : [0],
+                "speed" : 5,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "item",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "itemName" : "red_potion",
+                    "amount" : 10,
+                    "money" : 1000,
+                    "text" : [
+                        {
+                            "page" : "謝謝惠顧！（從道具欄點擊即可使用！）"
+                        },
+                        {
+                            "page" : "金額不足……"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "item",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "itemName" : "red_potion",
+                    "amount" : 20,
+                    "money" : 2000,
+                    "text" : [
+                        {
+                            "page" : "謝謝惠顧！（從道具欄點擊即可使用！）"
+                        },
+                        {
+                            "page" : "金額不足……"
+                        }
+                    ]
+                }
+            ],
+            "murmur" : [
+                {
+                    "text" : "蛤？你說你剛剛有看到我？你看錯了吧……" 
+                },
+                {
+                    "text" : "想要買軟實成績嗎？"
+                },
+                {
+                    "text" : "沒有錢就給我滾開！"
+                }
+            ]
+        },
+        {
+            "name" : "teacher",
+            "name_cht" : "卡羅賓",
+            "spawnPosition" : {
+                "x":1276,
+                "y":1095
+            },
+            "bodySize" : {
+                "x" : 57,
+                "y" : 79
+            },
+            "animation" : {
+                "frames" : [0, 1, 2,0],
+                "speed" : 8,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "mission",
+                    "missionNum" : {
+                        "lowerbound" : 2.8,
+                        "upperbound" : 3.5
+                    },
+                    "title" : "自我鍛鍊",
+                    "text" : [
+                        {
+                            "page" : "又是白癡的觀光客嗎？一群不怕死的傢伙，走開，快離開這裡。"
+                        },
+                        {
+                            "page" : "麥丁要你來的？你這弱不禁風的小子，先去增強自己的實力再來跟我說話吧。"
+                        }
+                    ],
+                    "missionContent" : {
+                        "title" : "自我鍛鍊",
+                        "description" : "我可是機器人王子，才不弱不禁風！",
+                        "type" : "hunt",
+                        "target" : "wood",
+                        "targetDisplayName" : "木妖",
+                        "goalAmount" : 20,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 800
+                            }
+                        ]
+                    }
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 3,
+                        "upperbound" : 3.8
+                    },
+                    "title" : "自我鍛鍊",
+                    "text" : [
+                        {
+                            "page" : "我不跟弱不禁風的小子說話。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "done",
+                    "missionNum" : {
+                        "lowerbound" : 3.5,
+                        "upperbound" : 4
+                    },
+                    "title" : "自我鍛鍊（已完成）",
+                    "text" : [
+                        {
+                            "page" : "回來啦，怯，真沒用，身上都是血跡。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "mission",
+                    "missionNum" : {
+                        "lowerbound" : 3.8,
+                        "upperbound" :4.5
+                    },
+                    "title" : "聽命行事",
+                    "text" : [
+                        {
+                            "page" : "好啦，麥丁要你來找我幹嘛？"
+                        },
+                        {
+                            "page" : "精靈？葛雷托阿，他可是比我更不喜歡外人阿！"
+                        },
+                        {
+                            "page" : "正巧，我身上做裝備的火毒眼獸尾巴見底了，不然你就幫我蒐集些回來，我幫你寫封信給他吧！"
+                        }
+                    ],
+                    "missionContent" : {
+                        "title" : "聽命行事",
+                        "description" : "乾巴巴的蜥蜴尾巴……",
+                        "type" : "collect",
+                        "target" : "tail",
+                        "targetDisplayName" : "斷掉的尾巴",
+                        "goalAmount" : 20,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 800
+                            }
+                        ]
+                    }
+                 },
+                 {
+                     "tag" : "quest",
+                     "missionNum" : {
+                         "lowerbound" : 4,
+                         "upperbound" : 4.8
+                     },
+                     "title" : "聽命行事",
+                     "text" :[
+                         {
+                             "page" : "我的火毒眼獸尾巴呢？真沒用，連個火毒眼獸尾巴都取不回來，還想見葛雷托。"
+                         }
+                     ]
+                  },
+                  {
+                      "tag" : "done",
+                      "missionNum" : {
+                          "lowerbound" : 4.5,
+                          "upperbound" : 5
+                      },
+                      "title" : "聽命行事（已完成）",
+                      "text" : [
+                          {
+                              "page" : "好啦好啦，給你，去找他吧、別再來煩我了！"
+                          }
+                      ]
+                  },
+                  {
+                      "tag" : "quest",
+                      "missionNum" : {
+                          "lowerbound" : -1,
+                          "upperbound" : 5
+                      },
+                      "title" : "你為什麼在這裡？",
+                      "text" :[
+                          {
+                              "page" : "我需要一個和平寧靜的地方。"
+                          },
+                          {
+                              "page" : "只可惜現在不要命的人愈來愈多了。"
+                          },
+                          {
+                              "page" : "(卡羅賓不滿地看著你)"
+                          }
+                      ]
+                  },
+                  {
+                      "tag" : "quest",
+                      "missionNum" : {
+                          "lowerbound" : -1,
+                          "upperbound" : 5
+                      },
+                      "title" : "你認識妙思嗎？",
+                      "text" : [
+                          {
+                              "page" : "不認識阿、弓箭手村來的人怎麼都喜歡問一些奇怪的問題？"
+                          }
+                      ]
+                  },
+                  {
+                      "tag" :"quest",
+                      "missionNum" : {
+                          "lowerbound" : 4.8,
+                          "upperbound" : 20
+                      },
+                      "title" : "卡倫賓？",
+                      "text" : [
+                          {
+                              "page" : "快去找葛雷托、別來煩我！"
+                          }
+                      ]
+                    }
+            ],
+            "murmur" : [
+                {
+                    "text" : "什麼時候才能把這些該死的觀光客都趕走阿？" 
+                },
+                {
+                    "text" : "還是比不上西方的火毒眼獸尾巴呢！"
+                },
+                {
+                    "text" : "森林需要寧靜。"
+                }
+            ]
+        },
+        {
+            "name" : "elf",
+            "name_cht" : "葛雷托",
+            "spawnPosition" : {
+                "x" : 1230,
+                "y" : 353
+            },
+            "bodySize" : {
+                "x" : 60,
+                "y" : 71
+            },
+            "animation" :{
+                "frames" : [0],
+                "speed" : 5,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "tell",
+                    "missionNum" : {
+                        "lowerbound" : 4.8,
+                        "upperbound" : 20
+                    },
+                    "title" : "你好？",
+                    "text" : [
+                        {
+                            "page" : "……"
+                        },
+                        {
+                            "page" : "在路上迷途的機器人王族，你為什麼來找我？"
+                        },
+                        {
+                            "page" : "是嗎？但為什麼我要幫你呢？"
+                        },
+                        {
+                            "page" : "被欺騙的王族阿、聆聽風的聲音吧。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20 
+                    },
+                    "title" : "葛雷托……？",
+                    "text" : [
+                        {
+                            "page" : "無理的王族……"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" :20
+                    },
+                    "title" : "可以幫幫我嗎？",
+                    "text" : [
+                        {
+                            "page" : "……"
+                        }
+                    ]
+                }
+            ],
+            "murmur" : [
+                {
+                    "text" : "……"
+                },
+                {
+                    "text" : "……"
+                },
+                {
+                    "text" : "……"
+                }
+            ]
+        },
+        {
+            "name" : "batman",
+            "name_cht" : "葛溫",
+            "spawnPosition" : {
+                "x" :1980 ,
+                "y" : 400
+            },
+            "bodySize" : {
+                "x" : 105 ,
+                "y" : 117
+            },
+            "animation" :{
+                "frames" : [0,1,2,1],
+                "speed" : 5,
+                "startFrame" : 0
+            },
+            "content" :[
+                {
+                    "tag" : "mission",
+                    "missionNum" :{
+                        "lowerbound" : 5.8,
+                        "upperbound" : 6.5
+                    },
+                    "title" : "幫助怪人",
+                    "text" : [
+                        {
+                            "page" : "孩子，你渴望力量嗎？"
+                        },
+                        {
+                            "page" : "等等等，別走嘛～我看你一直在這邊徘徊，你是不是遇到什麼困難了阿？"
+                        },
+                        {
+                            "page" : "哦？你被騙了？雖然不知道你被誰騙了，可是我知道誰可以跟你說實話喔，嘿嘿！"
+                        },
+                        {
+                            "page" : "嘿嘿，先幫我個忙我就跟你說要去哪裡找她，嘿嘿！"
+                        }
+                    ],
+                    "missionContent" : {
+                        "title" : "幫助怪人",
+                        "description" : "好奇怪的人……",
+                        "type" : "hunt",
+                        "target" : "dragon",
+                        "targetDisplayName" : "黑龍",
+                        "goalAmount" : 30,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 1200
+                            }
+                        ]
+                    }
+                },
+                {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 6,
+                        "upperbound" :6.8
+                    },
+                    "title" : "幫助怪人",
+                    "text" :[
+                        {
+                            "page" : "不幫我就得不到線索喔、慌亂的貓貓～"
+                        }    
+                    ]
+                },
+                {
+                    "tag" : "done",
+                    "missionNum":{
+                        "lowerbound" : 6.5,
+                        "upperbound" : 7
+                    },
+                    "title" : "幫助怪人（已完成）",
+                    "text" : [
+                        {
+                            "page" : "嘿嘿，你回來了，你一直往北走，會走到一個海港，那裏有一個很有智慧的海女、珮莉斯。"
+                        },
+                        {
+                            "page" : "對喔，嘿嘿，跟精靈一樣很有智慧，知道很多事情，但她向來會給提問者一個答案，去吧。"
+                        },
+                        {
+                            "page" : "想要力量的時候可以回來找我喔，嘿嘿。"
+                        }
+                    ]
+                 },
+                 {
+                     "tag" : "quest",
+                     "missionNum" : {
+                         "lowerbound" : -1,
+                         "upperbound" : 20
+                     },
+                     "title" : "可以教我倒掛嗎？",
+                     "text" : [
+                         {
+                             "page" : "原來是渴望力量的小貓咪阿，來阿、我教你，嘿嘿。"
+                         },
+                         {
+                             "page" : "不要走嘛～～"
+                         }
+                     ]
+                 },
+                 {
+                     "tag" : "quest",
+                     "missionNum" : {
+                         "lowerbound" : 5.8,
+                         "upperbound" : 20
+                     },
+                     "title" : "你是不是知道什麼？",
+                     "text" : [
+                         {
+                             "page" : "嘿嘿、你猜阿，看不到力量的貓貓。"
+                         },
+                         {
+                             "page" : "(葛溫給了你一張紙條、上面寫著GTFO)"
+                         },
+                         {
+                             "page" : "JK、人家沒有這麼兇啦，嘿嘿。"
+                         }
+                     ]
+                 }
+            ],
+            "murmur" : [
+                {
+                    "text" : "嘿嘿，力量力量。"
+                },
+                {
+                    "text" : "哪裡有可愛的小貓貓呢，嘿嘿～"
+                },
+                {
+                    "text" : "每天到掛地我頭好昏阿～"
+                }
+            ]
+            
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "SleepyWood",
+            "pos" : "assets/BGM/sleepywood.wav"
+        }
+    ],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/darkwood/darkwood_bg.png"
+        },
+        {
+            "name" : "back0",
+            "pos" : "assets/map/darkwood/0.png"
+        },
+        {
+            "name" : "back1",
+            "pos" : "assets/map/darkwood/1.png"
+        },
+        {
+            "name" : "chatbox",
+            "pos" : "assets/chatbox.png"
+        },
+        {
+            "name" : "exp",
+            "pos" : "assets/exp.png"
+        },
+        {
+            "name" : "red_potion",
+            "pos" : "assets/item/red_potion.png"
+        },
+        {
+            "name" : "namebox",
+            "pos" : "assets/namebox.png"
+        }
+    ],
+    "tilemap" : {
+        "name" : "darkwood",
+        "pos" : "assets/map/darkwood/darkwood.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "-1",
+            "-2",
+            "-3"
+        ],
+        "connect" : "-4",
+        "firstgid" : 1
+    },
+    "spritesheet" : [
+        {
+            "name" : "teacher",
+            "pos" : "assets/npc/teacher.png",
+            "width" : 57,
+            "height" : 79
+        },
+        {
+            "name" : "batman",
+            "pos" : "assets/npc/batman.png",
+            "width" : 105,
+            "height" : 117
+        },
+        {
+            "name" : "elf",
+            "pos" : "assets/npc/elf.png",
+            "width" : 60,
+            "height" : 71
+        },
+        {
+            "name" : "pointer",
+            "pos" : "assets/pointer.png",
+            "width" : 25,
+            "height" : 32
+        },
+        {
+            "name" : "bt_close",
+            "pos" : "assets/bt_close.png",
+            "width" : 85,
+            "height" : 19
+        },
+        {
+            "name" : "bt_next",
+            "pos" : "assets/bt_next.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_no",
+            "pos" : "assets/bt_no.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_ok",
+            "pos" : "assets/bt_ok.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_prev",
+            "pos" : "assets/bt_prev.png",
+            "width" : 46,
+            "height" : 18
+        },
+        {
+            "name" : "bt_yes",
+            "pos" : "assets/bt_yes.png",
+            "width" : 57,
+            "height" : 17
+        },
+        {
+            "name" : "bt_reject",
+            "pos" : "assets/bt_reject.png",
+            "width" : 57,
+            "height" : 17
+        },
+        {
+            "name" : "business_man",
+            "pos" : "assets/npc/business_man.png",
+            "width" : 61,
+            "height" : 55
+        }
+    ],
+    "bgm" : "SleepyWood",
+    "worldBounds" : {
+        "x" : 3084,
+        "y" : 1493
+    },
+    "backgroundImage" : [
+        {
+            "name" : "back0",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "back1",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "offsetY" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "darkwood_mob_2",
+            "x" : 2753,
+            "y" : 1264
+        },
+        {
+            "destination" : "darkwood_mob",
+            "x" : 368,
+            "y" : 904
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 1154,
+        "y" : 1144
+    }
+}

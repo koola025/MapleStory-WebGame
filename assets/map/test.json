@@ -1,0 +1,110 @@
+{
+    "mapName" : "test",
+    "mob" : [
+        {
+            "name" : "slime",
+            "spawnPosition" : [
+                {
+                    "x": 380, 
+                    "y": 400
+                },
+                {
+                    "x": 616,
+                    "y": 462
+                }
+            ],
+            "damageSound" : "slimeDamage",
+            "dieSound" : "slimeDie",
+            "animation" : {
+                "stand" : {
+                    "frames" : [0, 1, 2],
+                    "speed" : 4
+                },
+                "jump" : {
+                    "frames" : [3],
+                    "speed" : 1
+                },
+                "hit" : {
+                    "frames" : [4],
+                    "speed" : 2.5
+                },
+                "move" : {
+                    "frames" : [5, 6, 7, 8, 9, 10, 11],
+                    "speed" : 6
+                },
+                "die" : {
+                    "frames" : [12, 13, 14, 15],
+                    "speed" : 10
+                }
+            },
+            "bodySize" : {
+                "width" : 51,
+                "height" : 37,
+                "offsetX" : 1,
+                "offsetY" : 55
+            },
+            "anchorPoint" : {
+                "x" : 0.4,
+                "y" : 0.8
+            },
+            "maxHP" : 40,
+            "moveSpeed" : 100
+        }
+    ],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/bg.png"
+        },
+        {
+            "name" : "Sheet",
+            "pos" : "assets/Sheet.png"
+        },
+        {
+            "name" : "red",
+            "pos" : "assets/red.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "RestNPeace",
+            "pos" : "assets/BGM/RestNPeace.wav"
+        },
+        {
+            "name" : "slimeDamage",
+            "pos" : "assets/sound/slimeDamage.wav"
+        },
+        {
+            "name" : "slimeDie",
+            "pos" : "assets/sound/slimeDie.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "level1",
+        "pos" : "assets/test.json"
+    },
+    "spritesheet" : [
+        {
+            "name" : "slime",
+            "pos" : "assets/slime.png",
+            "width" : 70,
+            "height" : 93
+        }
+    ],
+    "bgm" : "RestNPeace",
+    "worldBounds" : {
+        "x" : 1280,
+        "y" : 730
+    },
+    "backgroundImage" : "bg",
+    "portals" : [
+        {
+            "x" : 1200,
+            "y" : 550
+        },
+        {
+            "x" : 70,
+            "y" : 700
+        }
+    ]
+}
