@@ -21,7 +21,8 @@ var menuState = {
         }, this); 
         
 
-        //game.state.start('play');        
+        
+        game.global.previousState = 'menu';      
     },
 
     update: function() {
@@ -38,7 +39,21 @@ var menuState = {
     addText: function() {
         this.nameLabel = game.add.text(413, 216, game.global.username ,{ font: '15px monospace', fill: '#664422' }); 
         this.levelLabel = game.add.text(413, 236, "Lv. " + game.global.level ,{ font: '15px monospace', fill: '#664422' }); 
-        this.locationLabel = game.add.text(413, 256, "Location: " + game.global.position ,{ font: '15px monospace', fill: '#664422' }); 
+
+        var displayName;
+        if(game.global.position == 'woodmarble')displayName = '弓箭手村';
+        else if(game.global.position == 'woodmarble_mob')displayName = '銀蓮花叢林';
+        else if(game.global.position == 'woodmarble_mob_2')displayName = '可疑的山丘';
+        else if(game.global.position == 'darkwood')displayName = '奇幻村';
+        else if(game.global.position == 'darkwood_mob')displayName = '黑森林通道';
+        else if(game.global.position == 'darkwood_mob_2')displayName = '森林迷宮';
+        else if(game.global.position == 'victown')displayName = '維多利亞港';
+        else if(game.global.position == 'grassymap')displayName = '海岸草叢';
+        else if(game.global.position == 'grassland')displayName = '森林小徑';
+        else if(game.global.position == 'tutorial')displayName = '原來的世界';
+        else if(game.global.position == 'tutorial2')displayName = '戰爭平原';
+        else if(game.global.position == 'bossroom')displayName = '噩夢';
+        this.locationLabel = game.add.text(413, 256, "Location: " + displayName ,{ font: '15px monospace', fill: '#664422' }); 
         this.moneyLabel = game.add.text(413, 276, "Money: $" + game.global.money ,{ font: '15px monospace', fill: '#664422' }); 
         this.nameLabel.alpha = 0;
         this.levelLabel.alpha = 0;
@@ -87,7 +102,10 @@ var menuState = {
             this.locationLabel.kill();
             this.moneyLabel.kill();
             this.scroll.animations.play('close');
+            var sound = game.add.audio('gameIn', 0.5);
+            sound.play();
             game.camera.fade(0x000000, 600);
+            loginState.BGM.stop();
             game.camera.onFadeComplete.add(function() {game.state.start('loadMapData');}, this);
         }
         else if (this.sureButton.input.pointerOver()) {
@@ -102,8 +120,41 @@ var loadMapData = {
         game.load.json('mapData', "assets/map/" + game.global.position + "/data.json");
     },
     create: function(){
+        if(game.global.previousPosition == 'tutorial2' && game.global.position != 'tutorial2'){
+            game.global.completeTutorial = true;
+            game.global.HP = -1;
+            game.global.maxHP = 50;
+            game.global.maxMP = 50;
+            game.global.level = 1;
+            game.global.damage = 17;
+            game.global.money = 0;
+            game.global.familiarity = 0.7;
+        }
         game.global.mapData = game.cache.getJSON('mapData');
-        game.state.start('play');
+        if(game.global.HP == 0){
+            game.global.HP = game.global.maxHP / 2;
+        }
+        if(game.global.previousState == 'play'){
+            var portal = game.global.mapData.portals;
+            for(var i=0; i<portal.length; i++){
+                if(portal[i].destination == game.global.previousPosition){
+                    game.global.coordinate.x = portal[i].x;
+                    game.global.coordinate.y = portal[i].y;
+                }
+            }
+        }
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                firebase.database().ref('users/' + user.uid).set(
+                    game.global
+                ).then(function() {
+                    game.state.start('play');
+                }).catch(function(error){
+                    console.error("寫入使用者資訊錯誤",error);
+                });
+            }
+        });
+        
     }
 }
 
@@ -111,7 +162,8 @@ var loadMapData = {
 
 var loginState = {
     preload: function () {
-        
+        this.BGM = game.add.audio('title', 0.7);
+        this.BGM.play();
     },
     create: function() {
         //game.stage.backgroundColor = 'cdebe3'; 
@@ -200,12 +252,24 @@ var loginState = {
             }
             else if (this.loginButton.input.pointerUp() && this.loginClicked == 1) {
                 this.loginClicked = 0;
-                game.global.email = this.emailBox.value;
-                game.global.password = this.passwordBox.value;
-                game.camera.fade(0x000000, 600);
-                game.camera.onFadeComplete.add(function() {game.state.start('menu');}, this);
-                  
-                // console.log(game.global.email + " " + game.global.password);
+
+                //firebase
+                var email = this.emailBox.value;
+                var password = this.passwordBox.value;
+                firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+                    console.log(user);
+                    var database = firebase.database().ref('users/' + user.user.uid);
+                    database.once('value', function(snapshot) {
+                        game.global = snapshot.val();
+                        game.global.firstLogin = false;
+                        game.camera.fade(0x000000, 600);
+                        game.camera.onFadeComplete.add(function() {game.state.start('menu');}, this);
+                    });
+                }).catch(function(e){ 
+                    console.log(e.message)
+                });
+                //
+
             }
             else if (this.loginButton.input.pointerOver()) {
                 this.loginButton.animations.play('hover'); 
@@ -223,11 +287,26 @@ var loginState = {
             }
             else if (this.signupButton.input.pointerUp() && this.signupClicked == 1) {
                 this.signupClicked = 0;
-                game.global.email = this.emailBox.value;
-                game.global.password = this.passwordBox.value;
-                game.state.start('newUser');
 
-                // console.log(game.global.email + " " + game.global.password);
+
+                //firebase
+                var email = this.emailBox.value;
+                var password = this.passwordBox.value;
+                firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+                    firebase.database().ref('users/' + user.user.uid).set(
+                        game.global
+                    ).then(function() {
+                        game.state.start('newUser');
+                    }).catch(function(error){
+                        console.error("寫入使用者資訊錯誤",error);
+                    });
+
+                }).catch(function(e){ 
+                    console.log(e.message)
+                });
+                //
+
+
 
             }
             else if (this.signupButton.input.pointerOver()) {
@@ -245,8 +324,39 @@ var loginState = {
         }
         else if (this.googleButton.input.pointerUp() && this.googleClicked == 1) {
             this.googleClicked = 0;
-            game.camera.fade(0x000000, 600);
-            game.camera.onFadeComplete.add(function() {game.state.start('menu');}, this);
+        
+            var provider = new firebase.auth.GoogleAuthProvider();
+        
+            console.log('signInWithPopup');
+            firebase.auth().signInWithPopup(provider).then(function (result) {
+                var token = result.credential.accessToken;
+                var user = result.user;
+                console.log(result);
+
+                if(result.additionalUserInfo.isNewUser){
+                    firebase.database().ref('users/' + user.uid).set(
+                        game.global
+                    ).then(function() {
+                        game.camera.fade(0x000000, 600);
+                        game.camera.onFadeComplete.add(function() {game.state.start('newUser');}, this);
+                    }).catch(function(error){
+                        console.error("寫入使用者資訊錯誤",error);
+                    });
+                }else{
+                    var database = firebase.database().ref('users/' + user.uid);
+                    database.once('value', function(snapshot) {
+                        game.global = snapshot.val();
+                        game.camera.fade(0x000000, 600);
+                        game.camera.onFadeComplete.add(function() {game.state.start('menu');}, this);
+                    });
+                }
+
+            }).catch(function (error) {
+                console.log('error: ' + error.message);
+            });
+
+            
+
         }
         else if (this.googleButton.input.pointerOver()) {
             this.googleButton.animations.play('hover'); 
@@ -254,7 +364,6 @@ var loginState = {
         else this.googleButton.animations.play('normal');
     }
 
-    
     
 
     

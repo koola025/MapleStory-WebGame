@@ -1,5 +1,12 @@
 var playState = {
     preload: function () {
+        //使用者資料
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.user = user;
+            }
+        });
+
         //地圖資料
         this.mapData = game.global.mapData;
         var image = this.mapData.image;
@@ -25,6 +32,12 @@ var playState = {
     create: function() {
         //地圖基本設置
         game.world.setBounds(0, 0, this.mapData.worldBounds.x, this.mapData.worldBounds.y);
+        if(game.global.missionList == null){
+            game.global.missionList = [];
+        }
+        if(game.global.items == null){
+            game.global.items = [];
+        }
 
         //背景音樂
         this.BGM = game.add.audio(this.mapData.bgm, 0.7);
@@ -59,18 +72,26 @@ var playState = {
         this.cursor.left.onDown.add(function(){playState.pushCommand('←');});
         this.cursor.right.onDown.add(function(){playState.pushCommand('→');});
         this.keyU = game.input.keyboard.addKey(Phaser.KeyCode.U);
-        this.keyU.onDown.add(function(){
-            var amount = game.global.maxEXP - game.global.EXP;
-            console.log("EXP add " + amount);
-            playState.increaseEXP(amount);
-        });
+        // this.keyU.onDown.add(function(){
+        //     var amount = game.global.maxEXP - game.global.EXP;
+        //     console.log("EXP add " + amount);
+        //     playState.increaseEXP(amount);
+        // });
         this.keyZ = game.input.keyboard.addKey(Phaser.KeyCode.Z);
         this.keyZ.onDown.add(function(){playState.pushCommand('Z');});
         this.keyX = game.input.keyboard.addKey(Phaser.KeyCode.X);
         this.keyX.onDown.add(function(){playState.pushCommand('X');});
         this.keyA = game.input.keyboard.addKey(Phaser.KeyCode.A);
         this.keyS = game.input.keyboard.addKey(Phaser.KeyCode.S);
-        this.keyS.onDown.add(function(){console.log(game.global)});
+        this.keyS.onDown.add(function(){
+            game.global.direction = playState.player.scale.x;
+            var user = playState.user;
+            firebase.database().ref('users/' + user.uid).set(
+                game.global
+            ).catch(function(error){
+                console.error("寫入使用者資訊錯誤",error);
+            });
+        });
         this.keySpace = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
         this.keyEnter = game.input.keyboard.addKey(Phaser.KeyCode.ENTER);
 
@@ -94,6 +115,19 @@ var playState = {
         //starla
         this.createUI();
         //
+
+        
+        //更新firebase
+        game.time.events.loop(10000, function(user){
+            game.global.direction = playState.player.scale.x;
+            firebase.database().ref('users/' + user.uid).set(
+                game.global
+            ).catch(function(error){
+                console.error("寫入使用者資訊錯誤",error);
+            });
+        }, this, this.user);
+
+        game.global.previousState = 'play';
     },
 
     update: function() {
@@ -135,6 +169,10 @@ var playState = {
         // this.playerAttackHandler();
         if(this.player.alertCount > 0)this.player.alertCount --;
         if(this.player.unbreakableCount > 0)this.player.unbreakableCount --;
+        game.global.coordinate = {
+            x: this.player.x,
+            y: this.player.y
+        };
 
         //UI
         // if(game.global.HP < game.global.maxHP) game.global.HP += 0.01;
@@ -143,7 +181,6 @@ var playState = {
         this.blueBar.updateCrop(this.cropRectMP);
         this.yellowBar.updateCrop(this.cropRectEXP);
         this.checkMenuBar();
-
 
         //繩梯
         this.player.touchConnect = false;
@@ -173,6 +210,7 @@ var playState = {
                 this.checkCommand();
             }
         }
+
         
     },
 
@@ -180,16 +218,23 @@ var playState = {
         var x, y;
         var findPortal = false;
         var portals = this.mapData.portals;
-        for(var i=0; i<portals.length; i++){
-            if(game.global.previousPosition == portals[i].destination){
-                x = portals[i].x;
-                y = portals[i].y;
-                findPortal = true;
+        console.log(game.global.completeTutorial);
+        console.log(game.global.previousState);
+        if(game.global.completeTutorial == true && game.global.previousState == 'menu'){
+            x = game.global.coordinate.x;
+            y = game.global.coordinate.y;
+        }else{
+            for(var i=0; i<portals.length; i++){
+                if(game.global.previousPosition == portals[i].destination){
+                    x = portals[i].x;
+                    y = portals[i].y;
+                    findPortal = true;
+                }
             }
-        }
-        if(findPortal == false){
-            x = _x;
-            y = _y;
+            if(findPortal == false){
+                x = _x;
+                y = _y;
+            }
         }
 
         this.player = game.add.sprite(x, y, 'player');
@@ -285,7 +330,7 @@ var playState = {
         this.skill4311003.offsetx = 0;
         this.skill4311003.offsety = 0;
         this.skill4311003.animationType = 'swing4';
-        this.skill4311003.mpCost = 0;
+        this.skill4311003.mpCost = 20;
         this.skill4311003.animations.add('effect', [0, 1, 2, 3, 4, 5], 12, false);
         this.skill4311003.body.setSize(109, 80, 13, 23);
         this.skill4311003.useSound = game.add.audio('4311003_use', 0.5);
@@ -296,7 +341,7 @@ var playState = {
         this.skill4331004.offsetx = -100;
         this.skill4331004.offsety = -65;
         this.skill4331004.animationType = 'swing1';
-        this.skill4331004.mpCost = 30;
+        this.skill4331004.mpCost = 50;
         this.skill4331004.animations.add('effect', [0, 1, 2, 3, 4, 5, 6], 14, false);
         this.skill4331004.body.setSize(160, 150, 30, 50);
         this.skill4331004.useSound = game.add.audio('4331004_use', 0.5);
@@ -307,7 +352,7 @@ var playState = {
         this.skill4341004.offsetx = -5;
         this.skill4341004.offsety = -30;
         this.skill4341004.animationType = 'swing4';
-        this.skill4341004.mpCost = 0;
+        this.skill4341004.mpCost = 100;
         this.skill4341004.animations.add('effect', [0, 1, 2, 3, 4, 5, 6, 7], 16, false);
         this.skill4341004.body.setSize(349, 123, 62, 42);
         this.skill4341004.useSound = game.add.audio('4331004_use', 0.5);
@@ -325,6 +370,7 @@ var playState = {
 
     createNPC: function() {
         if(this.mapData.npc == null)return;
+        else if(game.global.position == 'tutorial' && game.global.nowMission == 0) return;
         //建立group
         this.npcs = game.add.group();
         this.npcs.enableBody = true;
@@ -356,7 +402,6 @@ var playState = {
             npc.content = npcData[i].content;
             npc.murmur = npcData[i].murmur;
             npc.body.setSize(npcData[i].bodySize.x*3,npcData[i].bodySize.y , -npcData[i].bodySize.x, 0);
-            console.log(y+(npcData[i].bodySize.y)+10);
             this.namebox = game.add.image(x+(npcData[i].bodySize.x)/2, y+(npcData[i].bodySize.y)+3, 'namebox');
             this.namebox.anchor.setTo(0.5, 0);
             this.name = game.add.text(x+(npcData[i].bodySize.x)/2, y+(npcData[i].bodySize.y)+3, npc.name_cht, {
@@ -364,6 +409,8 @@ var playState = {
                 fill: "#ffffff"
             });
             this.name.anchor.setTo(0.5, 0);
+            npc.namebox = this.namebox;
+            npc.nametag = this.name;
             game.time.events.loop(3000, function(npc){
                 npc.animations.play('stand')
             }, this, npc);   
@@ -375,6 +422,7 @@ var playState = {
         if(this.mapData.tutorial == null){
             return;
         }
+        if(game.global.nowMission > 0) return;
         var tutorialData = this.mapData.tutorial;
         var tutorialNum = tutorialData.length;
 
@@ -384,8 +432,14 @@ var playState = {
         {
             var pos = tutorialData[i].pos;
             var hint = game.add.sprite(pos.x, pos.y, tutorialData[i].name);
-            hint.animations.add('animate', [0, 1, 2, 3, 4, 5], 10, true);
-            hint.animations.play('animate');
+            if (tutorialData[i].animate == true) {
+                hint.animations.add('animate', [0, 1, 2, 3, 4, 5], 10, true);
+                hint.animations.play('animate');
+            }
+            else {
+                hint.fixedToCamera = true;
+            }
+            
         }
     },
 
@@ -480,6 +534,15 @@ var playState = {
             portal.animations.add('idle', [0, 1, 2, 3, 4, 5, 6, 7], 10, true);
             portal.animations.play('idle');
         }
+        if(game.global.position == 'woodmarble' && game.global.nowMission >= 12)
+        {
+            var portal = this.portals.create(979, 1179, 'portal');
+            portal.anchor.setTo(0.5, 1);
+            portal.body.setSize(20, 30, 33, 225);
+            portal.destination = 'tutorial';
+            portal.animations.add('idle', [0, 1, 2, 3, 4, 5, 6, 7], 10, true);
+            portal.animations.play('idle');
+        }
     },
 
     createDropItemGroup: function(){
@@ -525,7 +588,20 @@ var playState = {
         this.UIgroup.add(this.nameLabel);
 
         //地點
-        this.locationLabel = game.add.text(105, 516, game.global.position ,{ font: '10px monospace', fill: '#212121' }); 
+        var displayName;
+        if(game.global.position == 'woodmarble')displayName = '弓箭手村';
+        else if(game.global.position == 'woodmarble_mob')displayName = '銀蓮花叢林';
+        else if(game.global.position == 'woodmarble_mob_2')displayName = '可疑的山丘';
+        else if(game.global.position == 'darkwood')displayName = '奇幻村';
+        else if(game.global.position == 'darkwood_mob')displayName = '黑森林通道';
+        else if(game.global.position == 'darkwood_mob_2')displayName = '森林迷宮';
+        else if(game.global.position == 'victown')displayName = '維多利亞港';
+        else if(game.global.position == 'grassymap')displayName = '海岸草叢';
+        else if(game.global.position == 'grassland')displayName = '森林小徑';
+        else if(game.global.position == 'tutorial')displayName = '原來的世界';
+        else if(game.global.position == 'tutorial2')displayName = '戰爭平原';
+        else if(game.global.position == 'bossroom')displayName = '噩夢';
+        this.locationLabel = game.add.text(105, 516, displayName ,{ font: '10px monospace', fill: '#212121' }); 
         this.UIgroup.add(this.locationLabel);
 
         //錢
@@ -565,6 +641,16 @@ var playState = {
         this.skill.animations.add('onclick', [7], 1, false);
         this.skill.animations.add('clicked', [8], 1, false);
         this.UIgroup.add(this.skill);
+
+        this.save = game.add.sprite(495, 520, 'menuBar');
+        this.save.scale.setTo(0.7,0.7);
+        this.save.inputEnabled = true;
+        this.save.animations.add('normal', [9], 1, false);
+        this.save.animations.add('onclick', [10], 1, false);
+        this.save.animations.add('clicked', [11], 1, false);
+        this.UIgroup.add(this.save);
+
+        this.pickHint = null;
 
         this.UIgroup.fixedToCamera = true;
     },
@@ -613,7 +699,7 @@ var playState = {
 
         this.checkSkill();
 
-
+        this.checkSave();
 
         
     },
@@ -733,6 +819,22 @@ var playState = {
             
         }
     },
+    checkSave: function() {
+        if (this.save.input.pointerDown()){
+            this.saveClick = 1;
+            this.save.animations.play('clicked');
+        }
+        else if (this.save.input.pointerUp() && this.saveClick == 1){
+            this.save.animations.play('onclick');
+            console.log("save now");
+            this.showSaveComplete();
+            this.saveClick = 0;
+        }
+        else if (this.save.input.pointerOver()) this.save.animations.play('onclick');     
+        else {
+            this.save.animations.play('normal');
+        }
+    },
     showBag: function() {
         this.bagBox = game.add.sprite(570, 290, 'bagBox');
         this.bagBox.inputEnabled = true;
@@ -781,13 +883,24 @@ var playState = {
             this.missionTitleLabel = game.add.text(592, 309, game.global.missionList[0].title ,{ font: '15px monospace', fill: '#ffffff' }); 
             this.UIgroup.add(this.missionTitleLabel);
 
-            this.missionRewardLabel = game.add.text(567, 338, game.global.missionList[0].reward[0].type + " " + game.global.missionList[0].reward[0].amount,{ font: '15px monospace', fill: '#ffffff' }); 
+            this.expPic = game.add.sprite(567, 335, 'exp');
+            this.UIgroup.add(this.expPic);
+            
+
+            this.missionRewardLabel = game.add.text(630, 336,  game.global.missionList[0].reward[0].amount + "exp",{ font: '15px monospace', fill: '#ffffff' }); 
             this.UIgroup.add(this.missionRewardLabel);
 
             this.missionTargetLabel = game.add.text(567, 367, game.global.missionList[0].targetDisplayName + "  " + game.global.missionList[0].completeAmount + "/" + game.global.missionList[0].goalAmount ,{ font: '15px monospace', fill: '#ffffff' }); 
             this.UIgroup.add(this.missionTargetLabel);
 
-            this.missionDescriptionLabel = game.add.text(515, 425, game.global.missionList[0].description ,{ font: '15px monospace', fill: '#ffffff' }); 
+            this.missionDescriptionLabel = game.global.missionList[0].description;
+            var tmp = '';
+            for(var i=0; i<this.missionDescriptionLabel.length; i+=12)
+            {
+                var tmp2 = this.missionDescriptionLabel.substring(i, i+12);
+                tmp += tmp2 + '\n';
+            }
+            this.missionDescriptionLabel = game.add.text(515, 425, tmp ,{ font: '15px monospace', fill: '#ffffff' }); 
             this.UIgroup.add(this.missionDescriptionLabel);
         }
         else {
@@ -796,7 +909,7 @@ var playState = {
             this.missionBox.scale.setTo(0.4,0.4);
             this.UIgroup.add(this.missionBox);
 
-            this.missionCat = game.add.sprite(575, 350, 'catStatue');
+            this.missionCat = game.add.sprite(575, 345, 'catStatue');
             this.missionCat.scale.setTo(0.75,0.75);
             this.missionCat.inputEnabled = true;
             this.missionCat.animations.add('blink', [0,1,2], 3, true);
@@ -807,15 +920,14 @@ var playState = {
     },
     hideMission: function() {
         this.missionBox.kill();
-        if (game.global.missionList[0]) {
+        
             if (this.missionTitleLabel) this.missionTitleLabel.kill();
             if (this.missionRewardLabel)this.missionRewardLabel.kill();
             if (this.missionTargetLabel) this.missionTargetLabel.kill();
             if (this.missionDescriptionLabel) this.missionDescriptionLabel.kill();
-        }
-        else {
+        
             if (this.missionCat) this.missionCat.kill();
-        }
+            if (this.expPic) this.expPic.kill();
             
         
         
@@ -830,34 +942,34 @@ var playState = {
         this.skillTitle1 = game.add.text(572, 188, "狂刃風暴" ,{ font: '15px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillTitle1);
 
-        this.skillTitle2 = game.add.text(572, 262, "技能二" ,{ font: '15px monospace', fill: '#ffffff' }); 
+        this.skillTitle2 = game.add.text(572, 262, "耀空斬" ,{ font: '15px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillTitle2);
 
-        this.skillTitle3 = game.add.text(572, 336, "技能三" ,{ font: '15px monospace', fill: '#ffffff' }); 
+        this.skillTitle3 = game.add.text(572, 336, "短刀護佑" ,{ font: '15px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillTitle3);
 
         this.skillTitle4 = game.add.text(572, 410, "二段跳" ,{ font: '15px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillTitle4);
 
-        this.skillSubTitle1 = game.add.text(650, 193, "等級需求:5  MP消耗:30" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillSubTitle1 = game.add.text(650, 193, "等級需求:5  MP消耗:20" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillSubTitle1);
 
-        this.skillSubTitle2 = game.add.text(650, 267, "等級需求:10  MP消耗:30" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillSubTitle2 = game.add.text(650, 267, "等級需求:10  MP消耗:50" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillSubTitle2);
 
-        this.skillSubTitle3 = game.add.text(650, 341, "等級需求:20  MP消耗:30" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillSubTitle3 = game.add.text(650, 341, "等級需求:20  MP消耗:100" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillSubTitle3);
 
-        this.skillSubTitle4 = game.add.text(650, 413, "等級需求:10  MP消耗:20" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillSubTitle4 = game.add.text(650, 413, "等級需求:5  MP消耗:5" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillSubTitle4);
 
-        this.skillText1 = game.add.text(542, 214, "使用方法: 前前攻\n效果: 造成120%傷害2下" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillText1 = game.add.text(542, 214, "使用方法: 前 前 攻\n效果: 造成120%傷害2下" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillText1);
 
-        this.skillText2 = game.add.text(542, 288, "使用方法: 前前攻\n效果: 造成120%傷害2下" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillText2 = game.add.text(542, 288, "使用方法: 前 上 攻\n效果: 造成200%傷害3下" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillText2);
 
-        this.skillText3 = game.add.text(542, 362, "使用方法: 前前攻\n效果: 造成120%傷害2下" ,{ font: '10px monospace', fill: '#ffffff' }); 
+        this.skillText3 = game.add.text(542, 362, "使用方法: 後 前 攻\n效果: 造成150%傷害6下" ,{ font: '10px monospace', fill: '#ffffff' }); 
         this.UIgroup.add(this.skillText3);
 
         this.skillText4 = game.add.text(542, 436, "使用方法: 在空中再按一次跳\n效果: 往前跳躍一段距離" ,{ font: '10px monospace', fill: '#ffffff' }); 
@@ -881,6 +993,32 @@ var playState = {
         if (this.skillText4) this.skillText4.kill();
 
     },
+    showSaveComplete: function() {
+        
+        game.global.direction = playState.player.scale.x;
+        firebase.database().ref('users/' + this.user.uid).set(
+            game.global
+        ).then(function(){
+            playState.saveComplete = game.add.sprite(620, 80, 'saveComplete');
+            playState.saveComplete.scale.setTo(0.7,0.7);
+            playState.UIgroup.add(playState.saveComplete);
+            playState.saveComplete.alpha = 0;
+            saveTween1 = game.add.tween(playState.saveComplete).to( { alpha: 1 , y:40}, 600, Phaser.Easing.Linear.None, true, 0, 0, false);  
+            saveTween1.onComplete.add(function () {
+                saveTween2 = game.add.tween(playState.saveComplete).to( { alpha: 1 , y:40}, 1000, Phaser.Easing.Linear.None, true, 0, 0, false);
+                saveTween2.onComplete.add(function () {
+                    saveTween = game.add.tween(playState.saveComplete).to( { alpha: 0 }, 600, Phaser.Easing.Linear.None, true, 0, 0, false);  
+                    saveTween.onComplete.add(function () {
+                        playState.saveComplete.kill();            
+                    }, this);           
+                }, this);  
+            }, this); 
+            
+        }).catch(function(error){
+        });
+
+        
+    },
     addItem: function(name, type, num) {
         if(this.bagBox && this.bagItem)this.hideBagItem();
 
@@ -903,19 +1041,20 @@ var playState = {
         else {
             game.global.items[index].num = game.global.items[index].num + num;
         }
-        if(this.bagBox && this.bagItem)this.showBagItem();
+        if(this.menuBarState == 1)this.showBagItem();
     },
     deleteItem: function(index, num) {
-        this.hideBagItem();
         if (game.global.items[index].num > num){
             game.global.items[index].num -= num;
         }
         else {
-            game.global.items.splice(index, 1);
-
+            game.global.items.splice(index, 1); 
         }
         
-        this.showBagItem();
+        if(this.bagItem){
+            this.hideBagItem();
+            this.showBagItem();
+        }
     },
 
     movePlayer: function() {
@@ -1053,7 +1192,7 @@ var playState = {
                 var hitbox = playState.hitboxes.getByName('4311003');
 
                 //消耗魔力
-                if(game.global.MP >= hitbox.mpCost){
+                if(game.global.MP >= hitbox.mpCost && game.global.level >= 5){
                     game.global.MP -= hitbox.mpCost;
                     game.add.tween(this.cropRectMP).to({width: 17 + 222 * game.global.MP / game.global.maxMP}, 500, null, true);
                 }else{
@@ -1090,7 +1229,7 @@ var playState = {
                 var hitbox = playState.hitboxes.getByName('4331004');
 
                 //消耗魔力
-                if(game.global.MP >= hitbox.mpCost){
+                if(game.global.MP >= hitbox.mpCost && game.global.level >= 10){
                     game.global.MP -= hitbox.mpCost;
                     game.add.tween(this.cropRectMP).to({width: 17 + 222 * game.global.MP / game.global.maxMP}, 500, null, true);
                 }else{
@@ -1127,7 +1266,7 @@ var playState = {
                 var hitbox = playState.hitboxes.getByName('4341004');
 
                 //消耗魔力
-                if(game.global.MP >= hitbox.mpCost){
+                if(game.global.MP >= hitbox.mpCost && game.global.level >= 20){
                     game.global.MP -= hitbox.mpCost;
                     game.add.tween(this.cropRectMP).to({width: 17 + 222 * game.global.MP / game.global.maxMP}, 500, null, true);
                 }else{
@@ -1167,7 +1306,7 @@ var playState = {
                 //隨機取得一種攻擊
                 var name = game.rnd.pick(['swing1', 'swing2', 'swing3', 'stab']);
                 var hitbox = playState.hitboxes.getByName(name);
-                hitbox.damage = Math.floor(game.global.damage * 10.00);
+                hitbox.damage = Math.floor(game.global.damage * 1.00);
                 hitbox.hit = 1;
                 hitbox.valid = true;
 
@@ -1241,8 +1380,8 @@ var playState = {
             var anchorPoint = mobData[i].anchorPoint;
     
             //音效
-            var damageSound = game.add.audio(mobData[i].damageSound, 0.8);
-            var dieSound = game.add.audio(mobData[i].dieSound, 0.8);
+            var damageSound = game.add.audio(mobData[i].damageSound, 0.5);
+            var dieSound = game.add.audio(mobData[i].dieSound, 0.5);
     
             //將怪物加進group
             for(var j=0; j<spawnPos.length; j++){
@@ -1259,7 +1398,7 @@ var playState = {
                 hit = mob.animations.add('hit', animation.hit.frames, animation.hit.speed, false);
                 die = mob.animations.add('die', animation.die.frames, animation.die.speed, false);
                 hit.onComplete.add(function (mob) {mob.beingHit = false;this.mobStateHandler(mob);}, this, mob);
-                die.onComplete.add(function (mob) {mob.kill();}, this, mob);
+                die.onComplete.add(function (mob) {mob.alpha = 0;mob.kill();}, this, mob);
 
                 mob.damageSound = damageSound;
                 mob.dieSound = dieSound;
@@ -1282,6 +1421,7 @@ var playState = {
                 mob.HP = maxHP;
                 mob.EXP = EXP;
                 mob.name = mobName;
+                mob.isDead = false;
                 mob.maxHP = maxHP;
                 mob.damage = damage;
                 mob.itemDrop = itemDrop;
@@ -1324,10 +1464,11 @@ var playState = {
                 mob.damageSound.play();
                 if(hit == 0){
                     if(mob.HP < 0){
+                        mob.isDead = true;
                         mob.animations.play('die');
                         playState.dropItem(mob);
                         mob.dieSound.play();
-                        game.add.tween(mob).to({alpha: 0}, 400).start();
+                        // game.add.tween(mob).to({alpha: 0}, 400).start();
                         playState.increaseEXP(mob.EXP);
 
                         //任務部分
@@ -1335,12 +1476,23 @@ var playState = {
                             if(game.global.missionList[i].type == 'hunt' && game.global.missionList[i].target == mob.name){
                                 if(game.global.missionList[i].completeAmount < game.global.missionList[i].goalAmount){
                                     game.global.missionList[i].completeAmount++;
-                                    if(playState.missionBox){
+                                    if(playState.missionBox && this.menuBarState == 0){
                                         playState.hideMission();
                                         playState.showMission();
                                     }
                                     if(game.global.missionList[i].completeAmount == game.global.missionList[i].goalAmount){
                                         game.global.nowMission+=0.3;
+                                        if(game.global.missionList[i].target == 'boss')
+                                        {
+                                            var portal = playState.portals.create(500, 460, 'portal');
+                                            portal.alpha = 0;
+                                            game.add.tween(portal).to({alpha: 1}, 500, null, true);
+                                            portal.anchor.setTo(0.5, 1);
+                                            portal.body.setSize(20, 30, 33, 225);
+                                            portal.destination = 'tutorial';
+                                            portal.animations.add('idle', [0, 1, 2, 3, 4, 5, 6, 7], 10, true);
+                                            portal.animations.play('idle'); 
+                                        }
                                     }
                                 }
                             }
@@ -1403,6 +1555,7 @@ var playState = {
                 drop.touchingDown = false;
             }
         }
+        this.dropHint();
     },
 
     pickUpItem: function(player, drop) {
@@ -1433,7 +1586,8 @@ var playState = {
                 if(game.global.missionList[i].type == 'collect' && game.global.missionList[i].target == drop.name){
                     if(game.global.missionList[i].completeAmount < game.global.missionList[i].goalAmount){
                         game.global.missionList[i].completeAmount++;
-                        if(playState.missionBox){
+                        if(playState.missionBox && this.menuBarState == 0){
+                            console.log("problem");
                             playState.hideMission();
                             playState.showMission();
                         }
@@ -1443,18 +1597,41 @@ var playState = {
                     }
                 }
             }
+            if (this.pickHint) {
+                pickTween = game.add.tween(this.pickHint).to( { alpha: 0 }, 600, Phaser.Easing.Linear.None, true, 0, 0, false);  
+                pickTween.onComplete.add(function () {
+                    this.pickHint.kill();            
+                }, this);
+            }
         }
+        
     },
 
+    dropHint: function() {
+        if (game.global.position == "tutorial2") {
+            if (this.pickHint) return;
+            else {
+                this.pickHint = game.add.sprite(620, 80, 'pickHint');
+                this.pickHint.scale.setTo(0.7,0.7);
+                this.UIgroup.add(this.pickHint);
+                this.pickHint.alpha = 0;
+                game.add.tween(this.pickHint).to( { alpha: 1 , y:40}, 600, Phaser.Easing.Linear.None, true, 0, 0, false);  
+                
+            }
+        }
+        else return;
+    },
     updateMob: function() {
 
         for(var i=0; i<this.mobs.length; i++){
+            if(game.global.nowMission == 11.8) break;
             var mob = this.mobs.getFirstDead();
             if(mob == null) break;
 
             mob.reset(mob.spawnX, mob.spawnY);
             mob.unbreakable = true;
             mob.beingHit = false;
+            mob.isDead = false;
             mob.HP = mob.maxHP;
             game.add.tween(mob).to({alpha: 1}, 400).start();
             game.time.events.add(400, function(mob) {
@@ -1485,7 +1662,8 @@ var playState = {
         var count = 28;
         
         //傷害數字
-        var damage = mob.damage;
+        var damage = 1 + Math.floor(mob.damage * 0.8 + mob.damage * 0.3 * Math.random());
+        // var damage = mob.damage;
         var nx = this.player.body.x + this.player.body.width - 12*damage.toString().length;
         var ny = this.player.body.y;
         var damageNumber = game.add.bitmapText(nx, ny, 'NoViolet1', damage, 30);
@@ -1503,6 +1681,7 @@ var playState = {
             game.global.HP -= damage;
             game.add.tween(this.cropRectHP).to({width: 17 + 222 * game.global.HP / game.global.maxHP}, 500, null, true);
         }else{
+            game.global.HP = 0;
             game.add.tween(this.cropRectHP).to({width: 17}, 500, null, true);
             this.playerDie();
         }
@@ -1526,7 +1705,7 @@ var playState = {
     },
 
     mobStateHandler: function(mob) {
-        if(!mob.alive || mob.beingHit)return;
+        if(!mob.alive || mob.beingHit || mob.isDead)return;
         
         //更新Timer
         game.time.events.remove(mob.timer);
@@ -1569,15 +1748,44 @@ var playState = {
 
     atPortal: function(player, portal) {
         if(this.cursor.up.isDown){
-            //更改位置
-            game.global.position =  portal.destination;
-            console.log(portal.destination);  
+            if(!this.upDown)
+            {
+                this.upDown = true;
+                //更改位置
+                if(game.global.nowMission == 11.8)
+                { 
+                    game.global.nowMission = 12;
+                    game.global.missionList.splice(0, 1);
+                }
+                this.tutorFinish = false;
+                if(game.global.position == 'tutorial2' && game.global.nowMission == 0)
+                    this.tutorFinish = true;
+                game.global.position =  portal.destination;
+                if(game.global.position == 'tutorial2' && game.global.nowMission > 0)
+                    game.global.position =  'woodmarble'; 
 
-            //畫面漸出
-            this.portalSound.play();
-            game.camera.fade(0x000000, 600);
-            game.camera.onFadeComplete.add(playState.teleport, this);
+                //畫面漸出
+                this.portalSound.play();
+                if(this.tutorFinish )
+                {
+                    this.guide = game.add.image(0, 0, 'guide');
+                    this.guide.fixedToCamera = true;
+                    this.BGM.stop();
+                    this.player.kill();
+                    game.time.events.add(4000, function(){
+                        game.camera.fade(0x000000, 600);
+                        game.camera.onFadeComplete.add(playState.teleport, playState);
+                    });
+                }
+                else
+                {
+                    game.camera.fade(0x000000, 600);
+                    game.camera.onFadeComplete.add(playState.teleport, this);  
+                }
+            }
         }
+        else
+            this.upDown = false;
     },
 
     interactNpc: function(player, npc) {
@@ -1595,8 +1803,9 @@ var playState = {
                     this.chatbox = game.add.image(400, 300, 'chatbox');
                     this.chatbox.anchor.setTo(0.5, 0.5);
                     this.chatbox.fixedToCamera = true;
-                    this.chatNpc = game.add.sprite(190, 240, npc.name);
+                    this.chatNpc = game.add.sprite(216, 300, npc.name);
                     this.chatNpc.animations.add('stand', npc.frames, npc.speed);
+                    this.chatNpc.anchor.setTo(0.5, 1);
                     this.chatNpc.animations.frame = npc.startFrame;
                     this.chatNpc.fixedToCamera = true;
                     game.time.events.loop(3000, function(){
@@ -1629,8 +1838,14 @@ var playState = {
                     this.contentNum = [];
                     this.choiceNum = 0;
                     this.itemPic = [];
-                    this.murmur = game.add.text(300,182,npc.murmur[game.rnd.integerInRange(0, 2)].text, {
-                        font: '14px'
+                    this.murmur = npc.murmur[game.rnd.integerInRange(0, 2)].text;
+                    var tmp = '';
+                    for(var i=0; i<this.murmur.length; i+=19){
+                        var tmp2 = this.murmur.substring(i, i+19);
+                        tmp += tmp2 + '\n';
+                    }
+                    this.murmur = game.add.text(314, 190, tmp, {
+                        font: "16px",
                     });
                     this.murmur.fixedToCamera = true;
                     for(var i = 0; i < npc.content.length; i++)
@@ -1646,7 +1861,7 @@ var playState = {
                             }
                             if(npc.content[i].tag != 'item')
                             {
-                                var tmp = game.add.text(300, 240+this.choiceNum*30, npc.content[i].title, {
+                                var tmp = game.add.text(314, 240+this.choiceNum*30, npc.content[i].title, {
                                     font: "16px",
                                     fill: "#483D8B",
                                     align: "center"
@@ -1711,6 +1926,7 @@ var playState = {
                         {
                             tmpText = npc.content[this.contentNum[this.npcMissionSelect]].text[0].page;
                             game.global.money -= npc.content[this.contentNum[this.npcMissionSelect]].money;
+                            this.moneyLabel.text = game.global.money;
                             this.addItem(npc.content[this.contentNum[this.npcMissionSelect]].itemName, 'consume', npc.content[this.contentNum[this.npcMissionSelect]].amount)
                         }
                         else if(npc.content[this.contentNum[this.npcMissionSelect]].tag == 'item')
@@ -1744,9 +1960,9 @@ var playState = {
                                 {
                                     if(this.exp == null && game.global.missionList[0].reward[0].type == 'EXP')
                                     {
-                                        this.exp = game.add.sprite(314, 300, 'exp');
+                                        this.exp = game.add.sprite(314, 310, 'exp');
                                         this.exp.fixedToCamera = true;
-                                        this.expValue = game.add.text(380, 303, game.global.missionList[0].reward[0].amount+'exp', {
+                                        this.expValue = game.add.text(380, 313, game.global.missionList[0].reward[0].amount+'exp', {
                                             font: "12px"
                                         });
                                         this.expValue.fixedToCamera = true;
@@ -1765,9 +1981,9 @@ var playState = {
                                 }
                                 if(this.exp == null && npc.content[this.contentNum[this.npcMissionSelect]].missionContent.reward[0].type == 'EXP')
                                 {
-                                    this.exp = game.add.sprite(314, 300, 'exp');
+                                    this.exp = game.add.sprite(314, 310, 'exp');
                                     this.exp.fixedToCamera = true;
-                                    this.expValue = game.add.text(380, 303, npc.content[this.contentNum[this.npcMissionSelect]].missionContent.reward[0].amount+'exp', {
+                                    this.expValue = game.add.text(380, 313, npc.content[this.contentNum[this.npcMissionSelect]].missionContent.reward[0].amount+'exp', {
                                         font: "12px"
                                     });
                                     this.expValue.fixedToCamera = true;
@@ -1822,6 +2038,40 @@ var playState = {
                         if(npc.content[this.contentNum[this.npcMissionSelect]].tag == 'mission'){
                             game.global.nowMission += 0.5;
                             game.global.missionList.push(npc.content[this.contentNum[this.npcMissionSelect]].missionContent);
+                            if(game.global.missionList[0].type == 'talkDirect')
+                                game.global.nowMission += 0.3;
+                            if(game.global.missionList[0].type == 'collect')
+                            {
+                                for(var i=0; i<game.global.items.length; i++)
+                                {
+                                    if(game.global.items[i].name == game.global.missionList[0].target)
+                                    {
+                                        game.global.missionList[0].completeAmount += game.global.items[i].num;
+                                        if(game.global.missionList[0].completeAmount >= game.global.missionList[0].goalAmount)
+                                        {
+                                            game.global.nowMission += 0.3;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            if(game.global.missionList[0].target == 'boss')
+                            {
+                                game.add.tween(npc).to({alpha: 0}, 500, null, true);
+                                game.add.tween(npc.namebox).to({alpha: 0}, 500, null, true);
+                                game.add.tween(npc.nametag).to({alpha: 0}, 500, null, true);
+                                //this.boss = game.add.sprite(330, 990, 'boss');
+                                this.boss = playState.npcs.create(330, 950, 'boss');
+                                this.boss.alpha = 0;
+                                this.boss.animations.frame = 0
+                                game.add.tween(this.boss).to({alpha: 1}, 500, null, true);
+                                game.time.events.add(1000, function(){
+                                    game.global.position =  'bossroom';
+                                    game.camera.fade(0x000000, 600);
+                                    game.camera.onFadeComplete.add(playState.teleport, this);
+                                }, this);
+
+                            }
                         }else if(npc.content[this.contentNum[this.npcMissionSelect]].tag == 'tell'){
                             game.global.nowMission += 1;
 
@@ -1833,7 +2083,27 @@ var playState = {
                                     this.increaseEXP(reward[k].amount);
                                 }
                             }
+                            for(var i=0; i<game.global.items.length; i++)
+                            {
+                                if(game.global.items[i].name == game.global.missionList[0].target)
+                                {
+                                    // game.global.items[i].num -= game.global.missionList[0].goalAmount;
+                                    this.deleteItem(i, game.global.missionList[0].goalAmount);
+                                    break;
+                                }
+                            }
                             game.global.missionList.splice(0, 1);
+                        }
+                        else if(npc.content[this.contentNum[this.npcMissionSelect]].tag == 'quest' && game.global.missionList[0]!=null)
+                        {
+                            if(game.global.missionList[0].type == 'talk')
+                            {
+                                if(game.global.missionList[0].target == npc.name && game.global.missionList[0].completeAmount<1)
+                                {
+                                    game.global.missionList[0].completeAmount++;
+                                    game.global.nowMission += 0.3;
+                                }
+                            }
                         }
                         this.name.destroy();
                         this.chatNpc.kill();
@@ -1889,9 +2159,9 @@ var playState = {
                                 {
                                     if(this.exp == null && game.global.missionList[0].reward[0].type == 'EXP')
                                     {
-                                        this.exp = game.add.sprite(314, 300, 'exp');
+                                        this.exp = game.add.sprite(314, 310, 'exp');
                                         this.exp.fixedToCamera = true;
-                                        this.expValue = game.add.text(380, 303, game.global.missionList[0].reward[0].amount+'exp', {
+                                        this.expValue = game.add.text(380, 313, game.global.missionList[0].reward[0].amount+'exp', {
                                             font: "12px"
                                         });
                                         this.expValue.fixedToCamera = true;
@@ -1909,9 +2179,9 @@ var playState = {
                             }
                             if(this.exp == null && npc.content[this.contentNum[this.npcMissionSelect]].missionContent.reward[0].type == 'EXP')
                             {
-                                this.exp = game.add.sprite(314, 300, 'exp');
+                                this.exp = game.add.sprite(314, 310, 'exp');
                                 this.exp.fixedToCamera = true;
-                                this.expValue = game.add.text(380, 303, npc.content[this.contentNum[this.npcMissionSelect]].missionContent.reward[0].amount+'exp', {
+                                this.expValue = game.add.text(380, 313, npc.content[this.contentNum[this.npcMissionSelect]].missionContent.reward[0].amount+'exp', {
                                     font: "12px"
                                 });
                                 this.expValue.fixedToCamera = true;
@@ -2179,7 +2449,7 @@ var playState = {
         game.global.level ++;
         game.global.maxEXP = game.global.level * game.global.level * 10;
         this.levelLabel.text = game.global.level;
-        game.global.maxHP += Math.floor(Math.random() * 4 + 20);
+        game.global.maxHP += Math.floor(Math.random() * 4 + 35);
         game.global.maxMP += Math.floor(Math.random() * 4 + 14);
         game.global.damage = Math.floor(Math.pow(game.global.level + 5, 2) / 2);
         game.global.HP = game.global.maxHP;
@@ -2199,8 +2469,10 @@ var playState = {
     pushCommand: function(command) {
         this.player.commandArray.push(command);
         if(command == 'X'){
-            if(!(this.player.body.onFloor() || this.player.body.touching.down || this.player.climbRope || this.player.climbLadder) && this.player.canDoubleJump){
-                // this.player.canDoubleJump = false;
+            if(!(this.player.body.onFloor() || this.player.body.touching.down || this.player.climbRope || this.player.climbLadder) && this.player.canDoubleJump && game.global.level >= 5 && game.global.MP >= 5){
+                this.player.canDoubleJump = false;
+                game.global.MP -= 5;
+                game.add.tween(this.cropRectMP).to({width: 17 + 222 * game.global.MP / game.global.maxMP}, 500, null, true);
                 this.doubleJumpSound.play();
                 var doubleJump = game.add.sprite(this.player.x, this.player.y, 'doubleJump');
                 doubleJump.animations.add('effect', [0, 1, 2, 3, 4, 5, 6], 7, false);
@@ -2247,21 +2519,43 @@ var playState = {
     },
 
     playerDie: function() {
-        // this.player.kill();
+        if(game.global.position == 'bossroom'){
+            game.global.missionNum = 11;
+        }
+        this.player.kill();
+        var dieSound = game.add.audio('playerDie', 0.5);
+        dieSound.play();
         var tomb = game.add.sprite(this.player.x, game.camera.y, 'tomb');
         tomb.anchor.setTo(0.5, 1);
         tomb.animations.add('effect', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 20, false);
         tomb.animations.play('effect');
         game.add.tween(tomb).to({y: this.player.y + 34}, 600, null, true);
+
+        game.time.events.add(1200, function(){
+            //更改位置
+            var position = game.global.position;
+            if(position == 'woodmarble_mob' || position == 'woodmarble_mob_2' || position == 'bossroom'){
+                game.global.position = 'woodmarble';
+            }else if(position == 'darkwood_mob' || position == 'darkwood_mob_2'){
+                game.global.position = 'darkwood';
+            }else if(position == 'grassland' || position == 'grassymap'){
+                game.global.position = 'victown';
+            }
+            
+    
+            //畫面漸出
+            game.camera.fade(0x000000, 600);
+            game.camera.onFadeComplete.add(playState.teleport, this);
+        }, this);
     },
 
     render: function() {
-        game.debug.text(game.time.fps || '--', 2, 14, "#00ff00"); 
-        game.debug.text(Math.floor(this.player.x) + ', ' + Math.floor(this.player.y), 2, 30, "#00ff00"); 
-        game.debug.text(this.player.commandArray, 2, 46, "#00ff00"); 
-        game.debug.text(this.currentKey, 2, 62, "#00ff00"); 
-        game.debug.text("HP: " + Math.floor(game.global.HP) +  ", MP: " + Math.floor(game.global.MP) + ", EXP: " + game.global.EXP +  ", damage: " + game.global.damage, 2, 78, "#00ff00"); 
-        // game.debug.physicsGroup(this.drops);
+        // game.debug.text(game.time.fps || '--', 2, 14, "#00ff00"); 
+        // game.debug.text(Math.floor(this.player.x) + ', ' + Math.floor(this.player.y), 2, 30, "#00ff00"); 
+        // game.debug.text(this.player.commandArray, 2, 46, "#00ff00"); 
+        // game.debug.text(this.currentKey, 2, 62, "#00ff00"); 
+        // game.debug.text("HP: " + Math.floor(game.global.HP) +  ", MP: " + Math.floor(game.global.MP) + ", EXP: " + game.global.EXP +  ", damage: " + game.global.damage, 2, 78, "#00ff00"); 
+        // game.debug.physicsGroup(this.mobs);
         // game.debug.physicsGroup(this.portals);
         // game.debug.spriteBounds(this.background.children[1])
         //game.debug.physicsGroup(this.npcs);

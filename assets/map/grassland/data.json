@@ -23,6 +23,22 @@
                 {
                     "x": 1586, 
                     "y": 482
+                },
+                {
+                    "x": 334, 
+                    "y": 962
+                },
+                {
+                    "x": 97, 
+                    "y": 962
+                },
+                {
+                    "x": 792, 
+                    "y": 1142
+                },
+                {
+                    "x": 1041, 
+                    "y": 1142
                 }
                 
             ],
@@ -60,12 +76,18 @@
                 "x" : 0.575,
                 "y" : 1
             },
-            "maxHP" : 150,
+            "maxHP" : 1300,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
-            "itemDrop" : []
+            "EXP" : 70,
+            "damage" : 40,
+            "moneyDrop" : 32,
+            "itemDrop" : [
+                {
+                    "name" : "prawn",
+                    "type" : "mob",
+                    "probability" : 40
+                }
+            ]
         },
         {
             "name" : "shark",
@@ -85,6 +107,10 @@
                 {
                     "x": 2104,
                     "y": 722
+                },
+                {
+                    "x": 2848,
+                    "y": 1022
                 },
                 {
                     "x": 2332,
@@ -125,12 +151,23 @@
                 "x" : 0.565,
                 "y" : 1
             },
-            "maxHP" : 150,
+            "maxHP" : 1300,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
-            "itemDrop" : []
+            "EXP" : 70,
+            "damage" : 40,
+            "moneyDrop" : 32,
+            "itemDrop" : [
+                {
+                    "name" : "shark_teeth",
+                    "type" : "mob",
+                    "probability" : 30
+                },
+                {
+                    "name" : "red_potion",
+                    "type" : "consume",
+                    "probability" : 50
+                }
+            ]
         }
     ],
     "npc" : [],
@@ -214,6 +251,10 @@
         {
             "name" : "sharkDie",
             "pos" : "assets/sound/sharkDie.wav"
+        },
+        {
+            "name" : "AboveTheTreetops",
+            "pos" : "assets/BGM/AboveTheTreetops.wav"
         }
     ],
     "spritesheet" : [

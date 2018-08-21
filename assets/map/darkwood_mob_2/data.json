@@ -69,11 +69,11 @@
                 "x" : 0.6,
                 "y" : 1
             },
-            "maxHP" : 150,
+            "maxHP" : 500,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
+            "EXP" : 55,
+            "damage" : 25,
+            "moneyDrop" : 25,
             "itemDrop" : [
                 {
                     "name" : "red_potion",
@@ -163,11 +163,11 @@
                 "x" : 0.4,
                 "y" : 1
             },
-            "maxHP" : 150,
+            "maxHP" : 500,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
+            "EXP" : 55,
+            "damage" : 25,
+            "moneyDrop" : 25,
             "itemDrop" : [
                 {
                     "name" : "paper",

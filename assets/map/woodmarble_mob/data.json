@@ -91,11 +91,11 @@
                 "x" : 0.4,
                 "y" : 0.8
             },
-            "maxHP" : 40,
+            "maxHP" : 150,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
+            "EXP" : 30,
+            "damage" : 15,
+            "moneyDrop" : 15,
             "itemDrop" : [
                 {
                     "name" : "green_water",
@@ -184,9 +184,9 @@
             },
             "maxHP" : 150,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
+            "EXP" : 30,
+            "damage" : 15,
+            "moneyDrop" : 15,
             "itemDrop" : [
                 {
                     "name" : "red_potion",

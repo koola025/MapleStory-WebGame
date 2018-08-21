@@ -9,6 +9,7 @@ var loadState = {
         game.load.spritesheet('4341004_effect', 'assets/character/4341004_effect.png', 477, 197);
         game.load.spritesheet('money0','assets/item/money0.png', 25, 24);
         game.load.spritesheet('tomb','assets/effect/tomb.png', 100, 47);
+        game.load.image('guide', 'assets/guide.png');
         game.load.image('swing1', 'assets/character/swing1.png');
         game.load.image('swing2', 'assets/character/swing2.png');
         game.load.image('swing3', 'assets/character/swing3.png');
@@ -27,6 +28,10 @@ var loadState = {
         game.load.image('shell', 'assets/item/shell.png');
         game.load.image('snake_skin', 'assets/item/snake_skin.png');
         game.load.image('tail', 'assets/item/tail.png');
+        game.load.image('shark_teeth', 'assets/item/shark_teeth.png');
+        game.load.image('ovum', 'assets/item/ovum.png');
+        game.load.image('glass', 'assets/item/glass.png');
+        game.load.image('prawn', 'assets/item/prawn.png');
         game.load.image('branch_raw', 'assets/item/branch_raw.png');
         game.load.image('dragon_angle_raw', 'assets/item/dragon_angle_raw.png');
         game.load.image('green_water_raw', 'assets/item/green_water_raw.png');
@@ -35,12 +40,16 @@ var loadState = {
         game.load.image('shell_raw', 'assets/item/shell_raw.png');
         game.load.image('snake_skin_raw', 'assets/item/snake_skin_raw.png');
         game.load.image('tail_raw', 'assets/item/tail_raw.png');
+        game.load.image('shark_teeth_raw', 'assets/item/shark_teeth_raw.png');
+        game.load.image('ovum_raw', 'assets/item/ovum_raw.png');
+        game.load.image('glass_raw', 'assets/item/glass_raw.png');
+        game.load.image('prawn_raw', 'assets/item/prawn_raw.png');
 
         //starla
         game.load.spritesheet('menuBar', 'assets/UI/menuBar.png', 100, 100);
         game.load.image('bar','assets/UI/UIbar.png');
         game.load.image('emptyBar','assets/UI/empty_bar.png');  
-        game.load.image('emptyEXP','assets/UI/empty_exp.png');   
+        game.load.image('emptyEXP','assets/UI/empty_EXP.png');   
         game.load.image('yellowBar','assets/UI/yellow_bar.png');     
         game.load.image('redBar','assets/UI/red_bar.png');      
         game.load.image('blueBar','assets/UI/blue_bar.png');
@@ -49,6 +58,10 @@ var loadState = {
         game.load.image('noMissionBox','assets/UI/noMission.png');
         game.load.image('skillBox','assets/UI/skillBox.png');
         game.load.image('HPdrug','assets/UI/hp_raw.png');
+        game.load.image('saveComplete', 'assets/UI/saveComplete.png');
+        game.load.image('pickHint', 'assets/UI/pickHint.png');
+        game.load.image('exp', 'assets/exp.png');
+        
         
         
         
@@ -67,7 +80,7 @@ var loadState = {
         
         game.load.image('frame','assets/UI/login/frame.png');
         game.load.image('loginBackground','assets/UI/login/loginBackground.png');
-        game.load.image('signBoard','assets/UI/login/signBoard.png');
+        game.load.image('signBoard','assets/UI/login/signboard.png');
         game.load.image('charName','assets/UI/login/charName.png');
         
         
@@ -87,6 +100,8 @@ var loadState = {
         game.load.audio('jump', 'assets/sound/jump.wav');
         game.load.audio('swordL', 'assets/sound/swordL.wav');
         game.load.audio('portal', 'assets/sound/portal.wav');
+        game.load.audio('playerDie', 'assets/sound/playerDie.wav');
+        game.load.audio('gameIn', 'assets/sound/gameIn.wav');
         game.load.audio('pickUpItem', 'assets/sound/pickUpItem.wav');
         game.load.audio('dropItem', 'assets/sound/dropItem.wav');
         game.load.audio('levelUp', 'assets/sound/levelUp.wav');
@@ -95,6 +110,7 @@ var loadState = {
         game.load.audio('4321003_use', 'assets/sound/4321003_use.wav');
         game.load.audio('4331004_use', 'assets/sound/4331004_use.wav');
         game.load.audio('4331004_hit', 'assets/sound/4331004_hit.wav');
+        game.load.audio('title', 'assets/BGM/title.wav');
 
         game.load.bitmapFont('NoRed1', 'assets/font/NoRed1_0.png', 'assets/font/NoRed1.fnt');
         game.load.bitmapFont('NoBlue1', 'assets/font/NoBlue1_0.png', 'assets/font/NoBlue1.fnt');
@@ -102,6 +118,6 @@ var loadState = {
     },
 
     create: function() {
-        game.state.start('loadMapData');
+        game.state.start('login');
     }
 }; 

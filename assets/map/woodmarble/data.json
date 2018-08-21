@@ -4,6 +4,72 @@
     "tutorial" :[],
     "npc" : [
         {
+            "name" : "business_man",
+            "name_cht" : "商人",
+            "spawnPosition" : {
+                "x":2200,
+                "y":907
+            },
+            "bodySize" : {
+                "x" : 61,
+                "y" : 55
+            },
+            "animation" : {
+                "frames" : [0],
+                "speed" : 5,
+                "startFrame" : 0
+            },
+            "content" : [
+                {
+                    "tag" : "item",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "itemName" : "red_potion",
+                    "amount" : 10,
+                    "money" : 1000,
+                    "text" : [
+                        {
+                            "page" : "謝謝惠顧！（從道具欄點擊即可使用！）"
+                        },
+                        {
+                            "page" : "金額不足……"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "item",
+                    "missionNum" : {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "itemName" : "red_potion",
+                    "amount" : 20,
+                    "money" : 2000,
+                    "text" : [
+                        {
+                            "page" : "謝謝惠顧！（從道具欄點擊即可使用！）"
+                        },
+                        {
+                            "page" : "金額不足……"
+                        }
+                    ]
+                }
+            ],
+            "murmur" : [
+                {
+                    "text" : "今天想要買點什麼呢？" 
+                },
+                {
+                    "text" : "我家的商品是最便宜的喔！"
+                },
+                {
+                    "text" : "是不是該買新的煙斗了呢？"
+                }
+            ]
+        },
+        {
             "name" : "young_girl",
             "name_cht" : "利納斯",
             "spawnPosition" : {
@@ -29,7 +95,7 @@
                     "title" : "如何回去我的世界？",
                     "text" : [
                         {
-                            "page" : "我聽我的筆友說過，再往東走有一個奇幻村，裡面有一個知道很多事情的精靈，或許你可以去問問她。"
+                            "page" : "我聽我的筆友說過，再往東走有一個奇幻村，裡面有一個知道很多事情的精靈，不知道她會不會知道呢？"
                         }
                     ]
                 },
@@ -66,77 +132,11 @@
             ]
         },
         {
-            "name" : "business_man",
-            "name_cht" : "商人",
-            "spawnPosition" : {
-                "x":2200,
-                "y":905
-            },
-            "bodySize" : {
-                "x" : 61,
-                "y" : 55
-            },
-            "animation" : {
-                "frames" : [0],
-                "speed" : 5,
-                "startFrame" : 0
-            },
-            "content" : [
-                {
-                    "tag" : "item",
-                    "missionNum" : {
-                        "lowerbound" : -1,
-                        "upperbound" : 20
-                    },
-                    "itemName" : "red_potion",
-                    "amount" : 10,
-                    "money" : 10,
-                    "text" : [
-                        {
-                            "page" : "謝謝惠顧！"
-                        },
-                        {
-                            "page" : "金額不足……"
-                        }
-                    ]
-                },
-                {
-                    "tag" : "item",
-                    "missionNum" : {
-                        "lowerbound" : -1,
-                        "upperbound" : 20
-                    },
-                    "itemName" : "red_potion",
-                    "amount" : 20,
-                    "money" : 20,
-                    "text" : [
-                        {
-                            "page" : "謝謝惠顧！"
-                        },
-                        {
-                            "page" : "金額不足……"
-                        }
-                    ]
-                }
-            ],
-            "murmur" : [
-                {
-                    "text" : "今天想要買點什麼呢？" 
-                },
-                {
-                    "text" : "我家的商品是最便宜的喔！"
-                },
-                {
-                    "text" : "是不是該買新的煙斗了呢？"
-                }
-            ]
-        },
-        {
             "name" :  "mom",
             "name_cht" : "妙斯",
             "spawnPosition" :{
                 "x" :420,
-                "y" :1104
+                "y" :1103
             },
             "bodySize" : {
                 "x" : 59,
@@ -160,18 +160,18 @@
                             "page" : "你終於醒過來了，昨天我在去買菜的路上看到你昏倒在路邊，想說先把你帶回家照顧，還有覺得哪裡不舒服嗎？"
                         },
                         {
-                            "page" : "沒有嗎?那就好，你長得跟我死去的兒子好像，他以前最愛吃我煮的菜了。"
+                            "page" : "沒有嗎？那就好，你長得跟我死去的兒子好像，他以前最愛吃我煮的菜了。"
                         },
                         {
-                            "page" : "沒事啦，很久以前的事情了，倒是你，要不要先在我家住一陣子？你可以先去村莊外狩獵一些綠水靈，動動身體。"
+                            "page" : "沒事啦，很久以前的事情了，倒是你，要不要先在我家住一陣子？你可以先去村莊外狩獵一些小藍寶，動動身體。"
                         }
                     ],
                     "missionContent" : {
                         "title" : "初來乍到",
-                        "description" : "去村莊外動動身體吧",
-                        "type" : "hunt",
-                        "target" : "slime",
-                        "targetDisplayName" : "綠水靈",
+                        "description" : "去村莊外動動身體吧！好像按”Ａ“可以撿東西的樣子",
+                        "type" : "collect",
+                        "target" : "shell",
+                        "targetDisplayName" : "藍寶殼",
                         "goalAmount" : 10,
                         "completeAmount" : 0,
                         "reward" : [
@@ -201,7 +201,7 @@
                         "lowerbound" : 0.5,
                         "upperbound" : 1
                     },
-                    "title" : "初來乍到",
+                    "title" : "初來乍到（已完成）",
                     "text" : [
                         {
                             "page" : "你回來了？菜快煮好了喔，再等我一下。"
@@ -227,7 +227,7 @@
                             "page" : "(看著妙斯有些哀傷的神情，你不禁感到有些抱歉)"
                         },
                         {
-                            "page" : "好吧，既然你這麼堅持，我就不攔你，莊子裡有一個常常出城貿易的商人，麥丁，你去找他問問看吧？"
+                            "page" : "好吧，既然你這麼堅持，我就不攔你，村子裡有一個常常出城貿易的商人，麥丁，你去找他問問看吧？"
                         },
                         {
                             "page" : "另外，能順便幫我趕跑村外的野豬嗎？他們最近愈來愈猖狂了。"
@@ -235,16 +235,16 @@
                     ],
                     "missionContent" : {
                         "title" : "清除威脅",
-                        "description" : "打倒猖狂的野豬",
+                        "description" : "村莊外的野豬真是太猖狂了",
                         "type" : "hunt",
                         "target" : "pig",
-                        "targetDisplayName" : "野豬",
+                        "targetDisplayName" : "肥肥",
                         "goalAmount" : 10,
                         "completeAmount" : 0,
                         "reward" : [
                             {
                                 "type" : "EXP",
-                                "amount" : 100
+                                "amount" : 500
                             }
                         ]
                     }
@@ -327,7 +327,7 @@
                     "tag" : "quest",
                     "missionNum" :{
                         "lowerbound" : 10.8,
-                        "upperbound" : 20
+                        "upperbound" : 12
                     },
                     "title" : "利納斯……？",
                     "text" : [
@@ -340,7 +340,7 @@
                     "tag" : "quest",
                     "missionNum":{
                         "lowerbound" : 10.8,
-                        "upperbound" : 20
+                        "upperbound" : 12
                     },
                     "title" : "你兒子……？",
                     "text" : [
@@ -348,7 +348,7 @@
                             "page" : "我吃了他……"
                         },
                         {
-                            "page" : "你不懂，他和他爸一樣，都想離開我，我就想、我只要吃了他，他就會永遠跟我在一起了"
+                            "page" : "你不懂，他和他爸一樣，都想離開我，我就想、我只要吃了他，他就會永遠跟我在一起了。"
                         },
                         {
                             "page" : "那是我的親生骨肉阿……"
@@ -358,21 +358,21 @@
                  {
                      "tag" : "done",
                      "missionNum" : {
-                         "lowerbound" :11.5,
-                         "upperbound" : 12
+                         "lowerbound" :10.5,
+                         "upperbound" : 11
                      },
-                     "title" : "詢問妙斯",
+                     "title" : "詢問妙斯（已完成）",
                      "text" : [
                          {
-                             "page" : "你回來了、珮莉斯對吧，唯一知道所有事實、也願意和世人交流的人。"
+                             "page" : "你回來了，珮莉斯對吧，唯一知道所有事實、也願意和世人交流的人。"
                          }
                      ]
                  },
                  {
-                    "tag" : "quest",
+                    "tag" : "mission",
                     "missionNum" : {
-                        "lowerbound" : 11.8,
-                        "upperbound" : 20
+                        "lowerbound" : 10.8,
+                        "upperbound" : 11.5
                     },
                     "title" : "我想回家",
                     "text" : [
@@ -380,16 +380,47 @@
                             "page" : "我知道怎麼讓你回家、但我不想讓你回家。"
                         },
                         {
-                            "page" : "你不懂嗎、你世界的人千方百計的陷害你、讓你落入危險，要不是我上山採藥的時候救了你，你早就沒命了。"
+                            "page" : "你不懂嗎、你世界的人千方百計地陷害你、讓你落入危險，要不是我上山採藥的時候救了你，你早就沒命了。"
                         },
                         {
-                            "page" : "(妙思看起來有些歇斯底里)"
+                            "page" : "(妙斯看起來有些歇斯底里)"
                         },
                         {
                             "page" : "為什麼大家都要無視我對他們的好？"
                         },
                         {
                             "page" : "我老公、我兒子、還有……你！"
+                        }
+                    ],
+                    "missionContent" : {
+                        "title" : "我想回家",
+                        "description" : "原來是你控制了她……！",
+                        "type" : "hunt",
+                        "target" : "boss",
+                        "targetDisplayName" : "？",
+                        "goalAmount" : 1,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 10000
+                            }
+                        ]
+                    }
+                 },
+                 {
+                    "tag" : "quest",
+                    "missionNum" : {
+                        "lowerbound" : 11.8,
+                        "upperbound" : 20
+                    },
+                    "title" : "你是誰？",
+                    "text" : [
+                        {
+                            "page" : "唉呀是生面孔呢。"
+                        },
+                        {
+                            "page" : "希望你還習慣這邊的環境。"
                         }
                     ]
                  }
@@ -411,7 +442,7 @@
             "name_cht" : "麥丁",
             "spawnPosition" : {
                 "x" : 2250,
-                "y" : 1220
+                "y" : 1215
             },
             "bodySize" : {
                 "x" : 50,
@@ -430,7 +461,7 @@
                         "lowerbound" : 1.5,
                         "upperbound" :2
                     },
-                    "title" : "清除威脅",
+                    "title" : "清除威脅（已完成）",
                     "text" : [
                         {
                             "page" : "你誰啊，小毛頭，之前都沒有看過你。"
@@ -449,15 +480,24 @@
                             "page" : "妙斯要你來找我的？要問什麼儘管問，妙斯平常幫我很多忙！"
                         },
                         {
-                            "page" : "機器人王國啊？這我沒聽說過，不然你去問問村長和那個種胡蘿蔔的利納斯好了。村長常常出遠門派訪鄰近村落、小姑娘聽說有再和一個神祕的筆友通信，或許他們會知道一些什麼。"
-                        },
-                        {
-                            "page" : "另外，村外有很多一坨坨綠綠的噁心生物，你順手幫我清理一下，當作給我的回報吧！"
-                        },
-                        {
-                            "page" : "謝啦，小毛頭！"
+                            "page" : "機器人王國啊？這我沒聽說過，不然你去問問那個種胡蘿蔔的利納斯好了。小姑娘聽說有在和一個神祕的筆友通信，他們會知道一些什麼。"
                         }
-                    ]
+                    ],
+                    "missionContent" : {
+                        "title" : "搜集情報",
+                        "description" : "利納斯是個怎麼樣的一個人呢？問完她再回去找麥丁好了",
+                        "type" : "talk",
+                        "target" : "young_girl",
+                        "targetDisplayName" : "利納斯",
+                        "goalAmount" : 1,
+                        "completeAmount" : 0,
+                        "reward" : [
+                            {
+                                "type" : "EXP",
+                                "amount" : 500
+                            }
+                        ]
+                    }
                 },
                 {
                     "tag" : "quest",
@@ -468,7 +508,7 @@
                     "title" : "蒐集情報",
                     "text" : [
                         {
-                            "page" : "綠色的小傢伙快淹沒我了阿、小毛頭你怎麼還在這！"
+                            "page" : "又是你啊，小毛頭，你怎麼還在這！"
                         }
                     ]
                 },
@@ -479,7 +519,7 @@
                         "lowerbound" : 2.5,
                         "upperbound" : 3
                     },
-                    "title" : "蒐集情報",
+                    "title" : "蒐集情報（已完成）",
                     "text" :[
                         {
                             "page" : "你說奇幻村嗎？"
@@ -555,7 +595,7 @@
             "name_cht" : "村長卡霍",
             "spawnPosition" : {
                 "x" : 4313,
-                "y" : 1220
+                "y" : 1218
             },
             "bodySize" : {
                 "x" : 49,
@@ -586,14 +626,31 @@
                 },
                 {
                     "tag" : "quest",
+                    "missionNum" : 
+                    {
+                        "lowerbound" : -1,
+                        "upperbound" : 20
+                    },
+                    "title" : "這裡到底是？",
+                    "text" : [
+                        {
+                            "page" : "好像是一個期末作業吧。"
+                        },
+                        {
+                            "page" : "聽說他們爆肝了四天才寫完呢。"
+                        }
+                    ]
+                },
+                {
+                    "tag" : "quest",
                     "missionNum" : {
                         "lowerbound" : -1,
                         "upperbound" : 20
                     },
-                    "title" : "大媽是個怎樣的人？",
+                    "title" : "妙斯是個怎樣的人？",
                     "text" : [
                         {
-                            "page" : "他人可好了，就是很多話，老公才受不了他，離婚了、兒子也不明原因失蹤，唉可憐了這麼好的婦人。"
+                            "page" : "她人可好了，就是很多話，老公才受不了他，離婚了、兒子也不明原因失蹤，唉可憐了這麼好的婦人。"
                         }
                     ]
                 }
@@ -618,7 +675,7 @@
         },
         {
             "name" : "bg",
-            "pos" : "assets/map/woodmarble/woodmarble.png"
+            "pos" : "assets/map/woodmarble/wood_marble.png"
         },
         {
             "name" : "back1",
@@ -657,7 +714,7 @@
     ],
     "tilemap" : {
         "name" : "woodmarble",
-        "pos" : "assets/map/woodmarble/woodmarble.json"
+        "pos" : "assets/map/woodmarble/wood_marble.json"
     },
     "tileData" : {
         "floor" : [
@@ -747,6 +804,12 @@
             "pos" : "assets/bt_reject.png",
             "width" : 57,
             "height" : 17
+        },
+        {
+            "name" : "boss",
+            "pos" : "assets/monster/boss.png",
+            "width" : 260,
+            "height" : 261
         }
     ],
     "bgm" : "FloralLife",
@@ -763,7 +826,8 @@
         {
             "name" : "cloud",
             "type" : "tile",
-            "offsetY" : -100
+            "offsetY" : -100,
+            "speed" : 0.4
         },
         {
             "name" : "back0",

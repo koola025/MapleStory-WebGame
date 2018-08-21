@@ -80,16 +80,16 @@
                 "x" : 0.4,
                 "y" : 1
             },
-            "maxHP" : 150,
+            "maxHP" : 250,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
+            "EXP" : 40,
+            "damage" : 18,
+            "moneyDrop" : 15,
             "itemDrop" : [
                 {
                     "name" : "red_potion",
                     "type" : "consume",
-                    "probability" : 50
+                    "probability" : 20
                 },
                 {
                     "name" : "branch",
@@ -189,16 +189,21 @@
                 "x" : 0.4,
                 "y" : 1
             },
-            "maxHP" : 150,
+            "maxHP" : 250,
             "moveSpeed" : 100,
-            "EXP" : 20,
-            "damage" : 10,
-            "moneyDrop" : 10,
+            "EXP" : 40,
+            "damage" : 18,
+            "moneyDrop" : 15,
             "itemDrop" : [
                 {
                     "name" : "red_potion",
                     "type" : "consume",
-                    "probability" : 50
+                    "probability" : 20
+                },
+                {
+                    "name" : "tail",
+                    "type" : "mob",
+                    "probability" : 40
                 }
             ]
         }

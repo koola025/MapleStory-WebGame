@@ -5,30 +5,25 @@
         "name" : "puffer_fish",
         "spawnPosition" : [
             {
-                "x": 2717, 
-                "y": 722
+                "x": 1048,
+                "y": 854
             },
             {
-                "x": 2280, 
-                "y": 722
+                "x": 353,
+                "y": 648
             },
             {
-                "x": 1821, 
-                "y": 602
+                "x": 638,
+                "y": 648
             },
             {
-                "x": 1954, 
-                "y": 662
+                "x": 728,
+                "y": 1034
             },
             {
-                "x": 2072, 
-                "y": 1022
-            },
-            {
-                "x": 1494,
-                "y": 1022
+                "x": 438,
+                "y": 1034
             }
-            
 
         ],
         "damageSound" : "puffer_fishDamage",
@@ -65,36 +60,52 @@
             "x" : 0.513,
             "y" : 1
         },
-        "maxHP" : 150,
+        "maxHP" : 1500,
         "moveSpeed" : 100,
-        "EXP" : 20,
-        "damage" : 10,
-        "moneyDrop" : 10,
-        "itemDrop" : []
+        "EXP" : 100,
+        "damage" : 50,
+        "moneyDrop" : 50,
+        "itemDrop" : [
+            {
+                "name" : "ovum",
+                "type" : "mob",
+                "probability" : 40
+            },
+            {
+                "name" : "red_potion",
+                "type" : "consume",
+                "probability" : 30
+            }
+        ]
     },
     {
         "name" : "squid",
         "spawnPosition" : [
             {
-                "x": 1048,
-                "y": 820
+                "x": 2717, 
+                "y": 756
             },
             {
-                "x": 353,
-                "y": 580
+                "x": 2280, 
+                "y": 756
             },
             {
-                "x": 638,
-                "y": 580
+                "x": 1821, 
+                "y": 636
             },
             {
-                "x": 728,
-                "y": 1000
+                "x": 1954, 
+                "y": 696
             },
             {
-                "x": 438,
-                "y": 1000
+                "x": 2072, 
+                "y": 1056
+            },
+            {
+                "x": 1494,
+                "y": 1056
             }
+            
         ],
         "damageSound" : "squidDamage",
         "dieSound" : "suqidDie",
@@ -130,12 +141,18 @@
             "x" : 0.6,
             "y" : 1
         },
-        "maxHP" : 150,
+        "maxHP" : 1500,
         "moveSpeed" : 100,
-        "EXP" : 20,
-        "damage" : 10,
-        "moneyDrop" : 10,
-        "itemDrop" : []
+        "EXP" : 100,
+        "damage" : 50,
+        "moneyDrop" : 50,
+        "itemDrop" : [
+            {
+                "name" : "glass",
+                "type" : "mob",
+                "probability" : 40
+            }
+        ]
     }],
     "npc" : [],
     "image" : [
@@ -219,6 +236,10 @@
         {
             "name" : "squidDie",
             "pos" : "assets/sound/mashroomDie.wav"
+        },
+        {
+            "name" : "AboveTheTreetops",
+            "pos" : "assets/BGM/AboveTheTreetops.wav"
         }
     ],
     "spritesheet" : [

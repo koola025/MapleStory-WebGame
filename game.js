@@ -1,22 +1,26 @@
 var game = new Phaser.Game(800, 600, Phaser.Canvas, 'canvas');
 
 game.global = {
-    email: "",
-    password: "",
-    username: "Mapleboy",
+    username : "Mapleboy",
+    completeTutorial : false,
+    previousState : "boot",
     mapData : null,
+    coordinate : {
+        x: 0,
+        y: 0
+    },
     direction : 1,
-    position : "woodmarble",
+    position : "tutorial",
     previousPosition : null,
-    damage : 17,
-    familiarity : 0.6,
-    HP : -1,
-    maxHP : 50,
-    MP : -1,
-    maxMP : 50,
-    EXP : -1,
+    damage : 66666,
+    familiarity : 1,
+    HP : 99999,
+    maxHP : 99999,
+    MP : 99999,
+    maxMP : 99999,
+    EXP : 0,
     maxEXP : 10,
-    level: 1,
+    level: 99,
     items: [],
     money: 0,
     missionList : [],
@@ -32,3 +36,4 @@ game.state.add('loadMapData', loadMapData);
 game.state.add('play', playState);
 
 game.state.start('boot');
+

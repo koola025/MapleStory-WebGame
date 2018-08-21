@@ -1,0 +1,111 @@
+{
+    "mapName" : "tutorial",
+    "mob" : [],
+    "npc" :[],
+    "tutorial" : [
+        {
+            "name" : "spot",
+            "pos" : {
+                "x" : 855,
+                "y" : 200
+            }
+        },
+        {
+            "name" : "up",
+            "pos" : {
+                "x" : 520,
+                "y" : 500
+            }
+        },
+        {
+            "name" : "down",
+            "pos" : {
+                "x" : 70,
+                "y" : 300
+            }
+        },
+        {
+            "name" : "right",
+            "pos" : {
+                "x" : 270,
+                "y" : 500
+            }
+        }
+    ],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/tutorial/tutorial.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "tokyo_sky",
+            "pos" : "assets/BGM/tokyo_sky.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "tutorial",
+        "pos" : "assets/map/tutorial/tutorial.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "layer 0",
+            "layer -1",
+            "layer -2",
+            "layer -3",
+            "layer -4"
+        ],
+        "connect" : "layer -5",
+        "firstgid" : 1
+    },
+    "spritesheet" : [
+        {
+            "name" : "spot",
+            "pos" : "assets/map/tutorial/spot.png",
+            "width" : 86,
+            "height" : 84
+        },
+        {
+            "name" : "up",
+            "pos" : "assets/map/tutorial/up.png",
+            "width" : 56,
+            "height" : 55
+        },
+        {
+            "name" : "down",
+            "pos" : "assets/map/tutorial/down.png",
+            "width" : 56,
+            "height" : 55
+        },
+        {
+            "name" : "right",
+            "pos" : "assets/map/tutorial/right.png",
+            "width" : 56,
+            "height" : 55
+        }
+    ],
+    "bgm" : "tokyo_sky",
+    "worldBounds" : {
+        "x" : 1244,
+        "y" : 700
+    },
+    "backgroundImage" : [
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "offsetY" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "tutorial2",
+            "x" : 900,
+            "y" : 355
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 100,
+        "y" : 408
+    }
+}
