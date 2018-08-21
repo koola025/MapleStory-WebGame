@@ -1,0 +1,331 @@
+{
+    "mapName" : "woodmarble_mob",
+    "mob" : [
+        {
+            "name" : "slime",
+            "spawnPosition" : [
+                {
+                    "x": 1096, 
+                    "y": 922
+                },
+                {
+                    "x": 1322, 
+                    "y": 922
+                },
+                {
+                    "x": 1535, 
+                    "y": 922
+                },
+                {
+                    "x": 574, 
+                    "y": 982
+                },
+                {
+                    "x": 722, 
+                    "y": 982
+                },
+                {
+                    "x" : 731,
+                    "y" : 1266
+                },
+                {
+                    "x" : 865,
+                    "y" : 1266
+                },
+                {
+                    "x" : 954,
+                    "y" : 1266
+                },
+                {
+                    "x" : 1410,
+                    "y" : 1266
+                },
+                {
+                    "x" : 1553,
+                    "y" : 1266
+                },
+                {
+                    "x" : 600,
+                    "y" : 1266
+                }, 
+                {
+                    "x" : 878,
+                    "y" : 546
+                },
+                {
+                    "x" : 1004,
+                    "y" : 546
+                }
+            ],
+            "damageSound" : "slimeDamage",
+            "dieSound" : "slimeDie",
+            "animation" : {
+                "stand" : {
+                    "frames" : [0, 1, 2],
+                    "speed" : 4
+                },
+                "jump" : {
+                    "frames" : [3],
+                    "speed" : 1
+                },
+                "hit" : {
+                    "frames" : [4],
+                    "speed" : 2.5
+                },
+                "move" : {
+                    "frames" : [5, 6, 7, 8, 9, 10, 11],
+                    "speed" : 6
+                },
+                "die" : {
+                    "frames" : [12, 13, 14, 15],
+                    "speed" : 10
+                }
+            },
+            "bodySize" : {
+                "width" : 51,
+                "height" : 37,
+                "offsetX" : 1,
+                "offsetY" : 55
+            },
+            "anchorPoint" : {
+                "x" : 0.4,
+                "y" : 0.8
+            },
+            "maxHP" : 40,
+            "moveSpeed" : 100,
+            "EXP" : 20,
+            "damage" : 10,
+            "moneyDrop" : 10,
+            "itemDrop" : [
+                {
+                    "name" : "green_water",
+                    "type" : "mob",
+                    "probability" : 80
+                }
+            ]
+        },
+        {
+            "name" : "pig",
+            "spawnPosition" : [
+                {
+                    "x": 1160, 
+                    "y": 922
+                },
+                {
+                    "x": 1392, 
+                    "y": 922
+                },
+                {
+                    "x": 1505, 
+                    "y": 922
+                },
+                {
+                    "x": 594, 
+                    "y": 982
+                },
+                {
+                    "x": 800, 
+                    "y": 982
+                },
+                {
+                    "x": 572,
+                    "y": 682
+                },
+                {
+                    "x": 725,
+                    "y": 682
+                },
+                {
+                    "x": 1206,
+                    "y": 682
+                },
+                {
+                    "x" : 878,
+                    "y" : 546
+                },
+                {
+                    "x" : 1004,
+                    "y" : 546
+                }
+            ],
+            "damageSound" : "pigDamage",
+            "dieSound" : "pigDie",
+            "animation" : {
+                "stand" : {
+                    "frames" : [8, 9,10],
+                    "speed" : 4
+                },
+                "jump" : {
+                    "frames" : [4],
+                    "speed" : 1
+                },
+                "hit" : {
+                    "frames" : [3],
+                    "speed" : 2.5
+                },
+                "move" : {
+                    "frames" : [5, 6,7],
+                    "speed" : 5
+                },
+                "die" : {
+                    "frames" : [0,1,2],
+                    "speed" : 10
+                }
+            },
+            "bodySize" : {
+                "width" : 69,
+                "height" : 57,
+                "offsetX" : 1,
+                "offsetY" : 0
+            },
+            "anchorPoint" : {
+                "x" : 0.4,
+                "y" : 0.8
+            },
+            "maxHP" : 150,
+            "moveSpeed" : 100,
+            "EXP" : 20,
+            "damage" : 10,
+            "moneyDrop" : 10,
+            "itemDrop" : [
+                {
+                    "name" : "red_potion",
+                    "type" : "consume", 
+                    "probability" : 50
+                },
+                {
+                    "name" : "pig_head",
+                    "type" : "mob",
+                    "probability" : 50
+                }
+            ]
+        }
+    ],
+    "npc" : [],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/woodmarble_mob/woodmarble_mob.png"
+        },
+        {
+            "name" : "cloud",
+            "pos" : "assets/map/woodmarble_mob/1.png"
+        },
+        {
+            "name" : "back1",
+            "pos" : "assets/map/woodmarble_mob/woodmarble_mob_background2.png"
+        },
+        {
+            "name" : "back00",
+            "pos" : "assets/map/woodmarble_mob/back00.png"
+        },
+        {
+            "name" : "back0",
+            "pos" : "assets/map/woodmarble_mob/woodmarble_mob_background1.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "CavaBien",
+            "pos" : "assets/BGM/CavaBien.wav"
+        },
+        {
+            "name" : "slimeDamage",
+            "pos" : "assets/sound/slimeDamage.wav"
+        },
+        {
+            "name" : "slimeDie",
+            "pos" : "assets/sound/slimeDie.wav"
+        },
+        {
+            "name" : "pigDamage",
+            "pos" : "assets/sound/pigDamage.wav"
+        },
+        {
+            "name" : "pigDie",
+            "pos" : "assets/sound/pigDie.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "woodmarble_mob",
+        "pos" : "assets/map/woodmarble_mob/woodmarble_mob.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "layer 0",
+            "layer -1",
+            "layer -2",
+            "layer -3",
+            "layer -4",
+            "layer -5",
+            "layer -6",
+            "layer -7"
+        ],
+        "connect" : "layer -8",
+        "firstgid" : 1
+    },
+    "spritesheet" : [
+        {
+            "name" : "slime",
+            "pos" : "assets/slime.png",
+            "width" : 70,
+            "height" : 93
+        },
+        {
+            "name" : "pig",
+            "pos" : "assets/monster/pig.png",
+            "width" : 69,
+            "height" : 57
+        }
+    ],
+    "bgm" : "CavaBien",
+    "worldBounds" : {
+        "x" : 2221,
+        "y" : 1500
+    },
+    "backgroundImage" : [
+        {
+            "name" : "back00",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "cloud",
+            "type" : "tile",
+            "offsetY" : -125,
+            "speed" : 0.4
+        },
+        {
+            "name" : "back0",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "back1",
+            "type" : "relative",
+            "offsetY" : 441
+        },
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "x" : 0,
+            "y" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "woodmarble",
+            "x" : 180,
+            "y" : 1266
+        },
+        {
+            "destination" : "darkwood_mob",
+            "x" : 2107,
+            "y" : 1266
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 582,
+        "y" : 1144
+    }
+}

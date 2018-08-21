@@ -1,0 +1,54 @@
+{
+    "mapName" : "tutorial2",
+    "mob" : [],
+    "npc" :[],
+    "tutorial" : [],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/tutorial2/tutorial2.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "rockbong",
+            "pos" : "assets/BGM/rockbong.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "tutorial",
+        "pos" : "assets/map/tutorial2/tutorial2.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "layer 0",
+            "layer -1"
+        ],
+        "connect" : "layer -2",
+        "firstgid" : 1
+    },
+    "spritesheet" : [],
+    "bgm" : "rockbong",
+    "worldBounds" : {
+        "x" : 1244,
+        "y" : 707
+    },
+    "backgroundImage" : [
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "offsetY" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "woodmarble",
+            "x" : 1113,
+            "y" : 527
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 92,
+        "y" : 527
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "mapName" : "woodmarble_mob2",
+    "mob" : [],
+    "npc" : [],
+    "tutorial" : [],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/woodmarble_mob2/woodmarble_mob2.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "CavaBien",
+            "pos" : "assets/BGM/CavaBien.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "woodmarble_mob2",
+        "pos" : "assets/map/woodmarble_mob2/woodmarble_mob2.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "layer 0",
+            "layer -1",
+            "layer -2",
+            "layer -3",
+            "layer -4",
+            "layer -5",
+            "layer -6",
+            "layer -7"
+        ],
+        "connect" : "layer -8",
+        "firstgid" : 1
+    },
+    "spritesheet" : [
+    ],
+    "bgm" : "CavaBien",
+    "worldBounds" : {
+        "x" : 2256,
+        "y" : 1502
+    },
+    "backgroundImage" : [
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "x" : 0,
+            "y" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "victown",
+            "x" : 263,
+            "y" : 1266
+        },
+        {
+            "destination" : "woodmarble",
+            "x" : 2107,
+            "y" : 1266
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 0,
+        "y" : 0
+    }
+}

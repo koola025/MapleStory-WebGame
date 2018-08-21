@@ -1,0 +1,309 @@
+{
+    "mapName" : "darkwood_mob",
+    "mob" : [
+        {
+            "name" : "wood",
+            "spawnPosition" : [
+                {
+                    "x": 1096, 
+                    "y": 381
+                },
+                {
+                    "x": 1322, 
+                    "y": 381
+                },
+                {
+                    "x": 1470, 
+                    "y": 381
+                },
+                {
+                    "x" : 1200,
+                    "y" : 381
+                },
+                {
+                    "x": 574, 
+                    "y": 1011
+                },
+                {
+                    "x": 722, 
+                    "y": 1011
+                },
+                {
+                    "x": 572,
+                    "y": 711
+                },
+                {
+                    "x": 725,
+                    "y": 711
+                },
+                {
+                    "x": 1206,
+                    "y": 711
+                },
+                {
+                    "x" : 1142,
+                    "y" : 711
+                }
+
+            ],
+            "damageSound" : "woodDamage",
+            "dieSound" : "woodDie",
+            "animation" : {
+                "stand" : {
+                    "frames" : [8],
+                    "speed" : 1
+                },
+                "jump" : {
+                    "frames" : [8],
+                    "speed" : 1
+                },
+                "hit" : {
+                    "frames" : [3],
+                    "speed" : 2.5
+                },
+                "move" : {
+                    "frames" : [4, 5, 6,7],
+                    "speed" : 5
+                },
+                "die" : {
+                    "frames" : [2,1,0],
+                    "speed" : 10
+                }
+            },
+            "bodySize" : {
+                "width" : 57,
+                "height" : 34,
+                "offsetX" :11,
+                "offsetY" : 24
+            },
+            "anchorPoint" : {
+                "x" : 0.4,
+                "y" : 1
+            },
+            "maxHP" : 150,
+            "moveSpeed" : 100,
+            "EXP" : 20,
+            "damage" : 10,
+            "moneyDrop" : 10,
+            "itemDrop" : [
+                {
+                    "name" : "red_potion",
+                    "type" : "consume",
+                    "probability" : 50
+                },
+                {
+                    "name" : "branch",
+                    "type" : "mob",
+                    "probability" : 40
+                }
+
+            ]
+        },
+        {
+            "name" : "lizard",
+            "spawnPosition" : [
+                {
+                    "x": 564, 
+                    "y": 1011
+                },
+                {
+                    "x": 732, 
+                    "y": 1011
+                },
+                {
+                    "x": 552,
+                    "y": 711
+                },
+                {
+                    "x": 745,
+                    "y": 711
+                },
+                {
+                    "x": 1216,
+                    "y": 711
+                },
+                {
+                    "x" : 1142,
+                    "y" : 711
+                },
+                {
+                    "x" : 167,
+                    "y" : 1376
+                },
+                {
+                    "x" : 245,
+                    "y" : 1376
+                },
+                {
+                    "x" : 731,
+                    "y" : 1376
+                },
+                {
+                    "x" : 1083,
+                    "y" : 1256
+                },
+                {
+                    "x" : 1309,
+                    "y" : 1256
+                },
+                {
+                    "x" : 1610,
+                    "y" : 1256
+                },
+                {
+                    "x" : 1625,
+                    "y" : 1256
+                }
+            ],
+            "damageSound" : "lizardDamage",
+            "dieSound" : "lizardDie",
+            "animation" : {
+                "stand" : {
+                    "frames" : [9,10,11],
+                    "speed" : 5
+                },
+                "hit" : {
+                    "frames" : [3],
+                    "speed" : 2.5
+                },
+                "jump" : {
+                    "frames" : [4],
+                    "speed" : 1
+                },
+                "move" : {
+                    "frames" : [5,6,7,8],
+                    "speed" : 5
+                },
+                "die" : {
+                    "frames" : [0,1,2],
+                    "speed" : 10
+                }
+            },
+            "bodySize" : {
+                "width" : 47,
+                "height" : 26,
+                "offsetX" : 30,
+                "offsetY" : 28
+            },
+            "anchorPoint" : {
+                "x" : 0.4,
+                "y" : 1
+            },
+            "maxHP" : 150,
+            "moveSpeed" : 100,
+            "EXP" : 20,
+            "damage" : 10,
+            "moneyDrop" : 10,
+            "itemDrop" : [
+                {
+                    "name" : "red_potion",
+                    "type" : "consume",
+                    "probability" : 50
+                }
+            ]
+        }
+    
+    ],
+    "npc" : [],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/darkwood_mob/darkwood_mob.png"
+        },
+        {
+            "name" : "back0",
+            "pos" : "assets/map/darkwood_mob/0.png"
+        },
+        {
+            "name" : "back1",
+            "pos" : "assets/map/darkwood_mob/1.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "SleepyWood",
+            "pos" : "assets/BGM/sleepywood.wav"
+        },
+        {
+            "name" : "woodDamage",
+            "pos" : "assets/sound/woodDamage.wav"
+        },
+        {
+            "name" : "woodDie",
+            "pos" : "assets/sound/woodDie.wav"
+        },
+        {
+            "name" : "lizardDamage",
+            "pos" : "assets/sound/lizardDamage.wav"
+        },
+        {
+            "name" : "lizardDie",
+            "pos" : "assets/sound/lizardDie.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "darkwood_mob",
+        "pos" : "assets/map/darkwood_mob/darkwood_mob.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "-1",
+            "-2",
+            "-3"
+        ],
+        "connect" : "-4",
+        "firstgid" : 1
+    },
+    "spritesheet" : [
+        {
+            "name" : "wood",
+            "pos" : "assets/monster/wood.png",
+            "width" : 66,
+            "height" : 62
+        },
+        {
+            "name" : "lizard",
+            "pos" : "assets/monster/lizard.png",
+            "width" : 123,
+            "height" : 59
+        }
+    ],
+    "bgm" : "SleepyWood",
+    "worldBounds" : {
+        "x" : 2150,
+        "y" : 1500
+    },
+    "backgroundImage" : [
+        {
+            "name" : "back0",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "back1",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "offsetY" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "woodmarble_mob",
+            "x" : 573,
+            "y" : 352
+        },
+        {
+            "destination" : "darkwood",
+            "x" : 1799,
+            "y" : 1222
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 582,
+        "y" : 1144
+    }
+}

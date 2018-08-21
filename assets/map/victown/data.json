@@ -1,0 +1,169 @@
+{
+    "mapName" : "victown",
+    "mob" : [],
+    "npc" : [],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/victown/victown.png"
+        },
+        {
+            "name" : "back2",
+            "pos" : "assets/map/victown/back2.png"
+        },
+        {
+            "name" : "back1",
+            "pos" : "assets/map/victown/back1.png"
+        },
+        {
+            "name" : "back0",
+            "pos" : "assets/map/victown/back0.png"
+        },
+        {
+            "name" : "c4",
+            "pos" : "assets/map/victown/cloud/4.png"
+        },
+        {
+            "name" : "c5",
+            "pos" : "assets/map/victown/cloud/5.png"
+        },
+        {
+            "name" : "c8",
+            "pos" : "assets/map/victown/cloud/8.png"
+        },
+        {
+            "name" : "c9",
+            "pos" : "assets/map/victown/cloud/9.png"
+        },
+        {
+            "name" : "c10",
+            "pos" : "assets/map/victown/cloud/10.png"
+        },
+        {
+            "name" : "c11",
+            "pos" : "assets/map/victown/cloud/11.png"
+        },
+        {
+            "name" : "c12",
+            "pos" : "assets/map/victown/cloud/12.png"
+        },
+        {
+            "name" : "c13",
+            "pos" : "assets/map/victown/cloud/13.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "AboveTheTreetops",
+            "pos" : "assets/BGM/AboveTheTreetops.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "victown",
+        "pos" : "assets/map/victown/victown.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "redBottom",
+            "red1",
+            "red2",
+            "monster"
+            
+        ],
+        "connect" : "ladder",
+        "firstgid" : 8
+    },
+    "spritesheet" : [],
+    "bgm" : "AboveTheTreetops",
+    "worldBounds" : {
+        "x" : 3330,
+        "y" : 1650
+    },
+    "backgroundImage" : [
+        {
+            "name" : "back0",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "back1",
+            "type" : "relative",
+            "offsetY" : 120
+        },
+        {
+            "name" : "c4",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.35
+        },
+        {
+            "name" : "c5",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.33
+        },
+        {
+            "name" : "c8",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.41
+        },
+        {
+            "name" : "c9",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.30
+        },
+        {
+            "name" : "c10",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.31
+        },
+        {
+            "name" : "c11",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.34
+        },
+        {
+            "name" : "c12",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.4
+        },
+        {
+            "name" : "c13",
+            "type" : "tile",
+            "offsetY" : 20,
+            "speed" : 0.41
+        },
+        {
+            "name" : "back2",
+            "type" : "relative",
+            "offsetY" : 120
+        },
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "x" : 0,
+            "y" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "grassymap",
+            "x" : 3230,
+            "y" : 1292
+        },
+        {
+            "destination" : "grassland",
+            "x" : 3150,
+            "y" : 992
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 0,
+        "y" : 0
+    }
+}

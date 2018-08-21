@@ -1,0 +1,78 @@
+{
+    "mapName" : "darkwood",
+    "mob" : [
+        
+    ],
+    "image" : [
+        {
+            "name" : "bg",
+            "pos" : "assets/map/darkwood/darkwood_bg.png"
+        },
+        {
+            "name" : "back0",
+            "pos" : "assets/map/darkwood/0.png"
+        },
+        {
+            "name" : "back1",
+            "pos" : "assets/map/darkwood/1.png"
+        }
+    ],
+    "audio" : [
+        {
+            "name" : "SleepyWood",
+            "pos" : "assets/BGM/sleepywood.wav"
+        }
+    ],
+    "tilemap" : {
+        "name" : "darkwood",
+        "pos" : "assets/map/darkwood/darkwood.json"
+    },
+    "tileData" : {
+        "floor" : [
+            "-1",
+            "-2",
+            "-3"
+        ],
+        "connect" : "-4",
+        "firstgid" : 1
+    },
+    "spritesheet" : [],
+    "bgm" : "SleepyWood",
+    "worldBounds" : {
+        "x" : 3084,
+        "y" : 1493
+    },
+    "backgroundImage" : [
+        {
+            "name" : "back0",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "back1",
+            "type" : "relative",
+            "offsetY" : 0
+        },
+        {
+            "name" : "bg",
+            "type" : "absolute",
+            "offsetY" : 0
+        }
+    ],
+    "portals" : [
+        {
+            "destination" : "darkwood_mob_2",
+            "x" : 2753,
+            "y" : 1264
+        },
+        {
+            "destination" : "darkwood_mob",
+            "x" : 368,
+            "y" : 904
+        }
+    ],
+    "defaultPosition" : {
+        "x" : 0,
+        "y" : 0
+    }
+}
