@@ -49,7 +49,7 @@ var loadState = {
         game.load.spritesheet('menuBar', 'assets/UI/menuBar.png', 100, 100);
         game.load.image('bar','assets/UI/UIbar.png');
         game.load.image('emptyBar','assets/UI/empty_bar.png');  
-        game.load.image('emptyEXP','assets/UI/empty_EXP.png');   
+        game.load.image('emptyEXP','assets/UI/empty_exp.png');   
         game.load.image('yellowBar','assets/UI/yellow_bar.png');     
         game.load.image('redBar','assets/UI/red_bar.png');      
         game.load.image('blueBar','assets/UI/blue_bar.png');
@@ -80,7 +80,7 @@ var loadState = {
         
         game.load.image('frame','assets/UI/login/frame.png');
         game.load.image('loginBackground','assets/UI/login/loginBackground.png');
-        game.load.image('signBoard','assets/UI/login/signboard.png');
+        game.load.image('signBoard','assets/UI/login/signBoard.png');
         game.load.image('charName','assets/UI/login/charName.png');
         
         
